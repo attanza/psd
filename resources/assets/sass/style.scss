@@ -1,0 +1,31 @@
+@media only screen and (min-width: 768px) {
+  .custom-p {
+    margin-top: 5px;
+    margin-left: 10px;
+  }
+}
+@media only screen and (max-width: 768px) {
+  .mt-mobile {
+    margin-top: 10px;
+  }
+}
+.btn-float{
+  position:fixed;
+  width:60px;
+  height:60px;
+  bottom:30px;
+  right:40px;
+  background-color: #DD4B39;
+  color:#FFF;
+  border-radius:50%;
+  text-align:center;
+  box-shadow: 2px 2px 3px #999;
+}
+.text-primary {
+  color: #3C8DBC;
+}
+.noty_theme__metroui.noty_bar .noty_body {
+  padding: 1em;
+  font-size: 14px;
+  text-align: center;
+}
