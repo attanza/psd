@@ -15,5 +15,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// Market
 	Route::get('/markets', 'MarketController@index')->name('markets.index');
 	Route::get('/market/{id}', 'MarketController@show')->name('markets.show');
+	// Product
+	Route::get('/products', 'ProductController@index')->name('products.index');
+	Route::get('/products/{id}', 'ProductController@show')->name('products.show');
 
 });

@@ -3,6 +3,7 @@ namespace App\Traits;
 
 use Illuminate\Http\Request;
 use App\Http\Resources\Market\MarketR;
+use App\Http\Resources\Product\ProductR;
 use App\Models\Media;
 use Image;
 use Storage;
@@ -18,21 +19,7 @@ trait UploadImageTrait
             case 'product':
                 return 'App\Models\Product';
             break;
-            case 'courier':
-                return 'App\User';
-            break;
-            case 'customer':
-                return 'App\User';
-            break;
-            case 'merchant':
-                return 'App\Models\Merchant';
-            break;
-            case 'user':
-                return 'App\User';
-            break;
-            case 'category':
-                return 'App\Models\Category';
-            break;
+
             default:
                 return 'App\Models\Building';
             break;
@@ -44,6 +31,10 @@ trait UploadImageTrait
         switch ($input) {
             case 'market':
                 return new MarketR($data);
+            break;
+
+            case 'product':
+                return new ProductR($data);
             break;
 
             default:

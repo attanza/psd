@@ -1,5 +1,5 @@
 @extends('adminlte::page')
-@section('title', 'ANTAR')
+@section('title', 'PSD ~ Market')
 @section('content_header')
 <h2>{{$market['name']}}</h2>
 @stop

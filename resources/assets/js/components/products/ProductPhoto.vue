@@ -1,9 +1,9 @@
 <template>
-<div id="market_photo">
+<div id="product_photo">
   <div class="box box-widget">
     <div class="box-body">
     <div class="thumbnail">
-      <img :src="market.photo">
+      <img :src="product.photo">
     </div>
     </div>
     <div class="box-footer">
@@ -54,7 +54,7 @@ export default {
   },
   data() {
     return {
-      market_id: '',
+      product_id: '',
       media: {
         url: '',
         headers: null,
@@ -70,28 +70,28 @@ export default {
     }
   },
   mounted() {
-    if (this.market) {
-      this.market_id = this.market.id
+    if (this.product) {
+      this.product_id = this.product.id
     }
   },
   methods: {
     showSuccess(file, response) {
-      this.$store.commit('currentMarket', response.data)
+      this.$store.commit('currentProduct', response.data)
       let vm = this
       vm.$refs.myVueDropzone.removeFile(file)
       $('#dropzone_uploader').modal('hide')
     },
     sending(file, xhr, formData) {
-      formData.append('model', 'market')
-      formData.append('id', this.market_id)
+      formData.append('model', 'product')
+      formData.append('id', this.product_id)
     },
     showUploader () {
       $('#dropzone_uploader').modal('show')
     }
   },
   computed: {
-    market() {
-      return this.$store.state.currentMarket
+    product() {
+      return this.$store.state.currentProduct
     }
   }
 }

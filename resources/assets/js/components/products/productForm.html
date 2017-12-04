@@ -1,0 +1,83 @@
+<div>
+  <div class="modal"
+       id="product_form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" :class="{'has-error': errors.has('code')}">
+            <label class="control-label"
+                   for="code">Code
+            </label>
+            <input name="code"
+                   v-model="code"
+                   type="text"
+                   placeholder="Product code"
+                   v-validate="'required|min:3|max:50'"
+                   data-vv-as="Product code"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('code')">{{ errors.first('code') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('name')}">
+            <label class="control-label"
+                   for="name">Name
+            </label>
+            <input name="name"
+                   v-model="name"
+                   type="text"
+                   placeholder="Product name"
+                   v-validate="'required|min:3|max:100'"
+                   data-vv-as="Product name"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('name')">{{ errors.first('name') }}</span>
+          </div>
+                    
+          <div class="form-group" :class="{'has-error': errors.has('measurement')}">
+            <label class="control-label"
+                   for="measurement">Measurement
+            </label>
+            <input name="measurement"
+                   v-model="measurement"
+                   type="text"
+                   placeholder="Product measurement"
+                   v-validate="'required|max:25'"
+                   data-vv-as="Product measurement"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('measurement')">{{ errors.first('measurement') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('price')}">
+            <label class="control-label"
+                   for="price">Price
+            </label>
+            <input name="price"
+                   v-model="price"
+                   type="text"
+                   placeholder="Product price"
+                   v-validate="'required|numeric'"
+                   data-vv-as="Product price"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('price')">{{ errors.first('price') }}</span>
+          </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-default pull-left"
+                  @click="handleClose">Close</button>
+          <button type="button"
+                  class="btn btn-danger" @click="submit"><i class="fa fa-floppy-o m-r-5"></i> Save</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

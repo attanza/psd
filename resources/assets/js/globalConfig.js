@@ -7,6 +7,9 @@ export const areaComboUrl = apiDomain + 'api/area/for/combo'
 export const marketListUrl = apiDomain + 'api/market-list'
 export const marketUrl = apiDomain + 'api/market'
 export const marketWebUrl = apiDomain + 'market/'
-
+// Product
+export const productListUrl = apiDomain + 'api/product-list'
+export const productUrl = apiDomain + 'api/product'
+export const productWebUrl = apiDomain + 'products/'
 // Media
 export const mediaUploadUrl = apiDomain + 'api/media-upload'

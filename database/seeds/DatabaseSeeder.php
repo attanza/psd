@@ -14,6 +14,6 @@ class DatabaseSeeder extends Seeder
         $this->call(LaratrustSeeder::class);
         $this->call(AreaSeed::class);
         $this->call(MarketSeed::class);
-
+        $this->call(ProductSeed::class);
     }
 }
