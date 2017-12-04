@@ -11,5 +11,9 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 	// Areas
-	Route::get('/areas', 'AreaController@index')->name('area.index');
+	Route::get('/areas', 'AreaController@index')->name('areas.index');
+	// Market
+	Route::get('/markets', 'MarketController@index')->name('markets.index');
+	Route::get('/market/{id}', 'MarketController@show')->name('markets.show');
+
 });

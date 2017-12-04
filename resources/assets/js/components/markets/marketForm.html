@@ -1,0 +1,73 @@
+<div>
+  <div class="modal"
+       id="market_form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" :class="{'has-error': errors.has('area_id')}">
+            <label class="control-label"
+                   for="area_id">Area
+            </label>
+            <select name="area_id"
+                   v-model="area_id"
+                   type="text"
+                   v-validate="'required|integer'"
+                   data-vv-as="Area"
+                   class="form-control">
+                     <option value="" selected disabled>Select Area</option>
+                     <option v-for="area in areas" :value="area.id">{{area.name}}</option>
+                   </select>
+            <span class="help-block"
+                  v-show="errors.has('area_id')">{{ errors.first('area_id') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('name')}">
+            <label class="control-label"
+                   for="name">Name
+            </label>
+            <input name="name"
+                   v-model="name"
+                   type="text"
+                   placeholder="Market Name"
+                   v-validate="'required|min:3|max:150'"
+                   data-vv-as="Market Name"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('name')">{{ errors.first('name') }}</span>
+          </div>
+                    
+          <div class="form-group" :class="{'has-error': errors.has('address')}">
+            <label class="control-label"
+                   for="address">Address
+            </label>
+            <textarea name="address"
+                   v-model="address"
+                   placeholder="Address"
+                   v-validate="'max:200'"
+                   data-vv-as="address"
+                   class="form-control"></textarea>
+            <span class="help-block"
+                  v-show="errors.has('address')">{{ errors.first('address') }}</span>
+          </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-default pull-left"
+                  @click="handleClose">Close</button>
+          <button type="button"
+                  class="btn btn-danger" @click="submit">
+                    <i class="fa fa-floppy-o m-r-5"></i> Save
+                  </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -14,10 +14,18 @@
       </div>
     </div>
     <div class="col-sm-4 mt-mobile">
-      <select class="form-control" v-model="building_id" @change="search">
-        <option value="" selected disabled="">Group by Apartment</option>
-        <option v-for="building in buildings" :value="building.id">{{building.name}}</option>
-      </select>
+      
+      <div class="input-group">
+        <select class="form-control" v-model="comboId" @change="search">
+          <option value="" selected disabled="">Group by {{groupBy}}</option>
+          <option v-for="data in comboData" :value="data.id">{{data.name}}</option>
+        </select>
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button" @click="clearSelect">
+            <i class="fa fa-times"></i>
+          </button>
+        </span>
+      </div>
     </div>
     <div class="col-sm-4 mt-mobile">
       <div class="form-group has-feedback">
@@ -34,21 +42,21 @@
 </template>
 
 <script>
-import {buildingForComboUrl} from '../../globalConfig'
 import catchJsonErrors from '../../mixins/catchJsonErrors';
 export default {
   data() {
     return {
       searchQ: '',
       limit: '',
-      buildings: [],
-      building_id: ''
+      comboId: ''
     }
   },
   props: [
     'perPages',
     'loading',
-    'paginate'
+    'paginate',
+    'comboData',
+    'groupBy'
   ],
   watch: {
     paginate() {
@@ -59,27 +67,21 @@ export default {
   },
   mounted() {
     this.limit = this.paginate
-    this.getBuildings()
   },
   methods: {
-    getBuildings () {
-      axios.get(buildingForComboUrl).then((resp) => {
-        if (resp.status === 200) {
-          this.buildings = resp.data
-        }
-      }).catch((error) => {
-        this.catchError(error.response)
-      })
-    },
     search() {
       let data = {
         searchQ: this.searchQ,
-        building_id: this.building_id
+        comboId: this.comboId
       }
       this.$emit('search', data)
     },
     changePaginate() {
       this.$emit('changePaginate', this.limit)
+    },
+    clearSelect () {
+      this.comboId = ''
+      this.search()
     }
   },
   mixins: [catchJsonErrors]

@@ -1,0 +1,55 @@
+<div id="market_list">
+  <div class="row">
+    <div class="col-lg-12">
+      <div class="box box-danger">
+        <div class="box-header">
+          <table-search4 :perPages="perPages"
+                        :loading="loading"
+                        :paginate="paginate"
+                        :comboData="areas"
+                        :groupBy="groupBy"
+                        @search="search"
+                        @changePaginate="changePaginate"></table-search4>
+        </div>
+        <div class="box-body"
+             style="margin-top: -20px;">
+          <div class="table-responsive">
+            <table class="table table-bordered table-hover table-condensed sortable">
+              <thead>
+                <tr>
+                  <th>Name</th>
+                  <th>Area</th>
+                  <th>Address</th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr v-for="market in markets">
+                  <td>{{market.name}}</td>
+                  <td>{{market.area}}</td>
+                  <td>{{market.address}}</td>
+                  <td align="center">
+                    <button class="btn btn-danger btn-xs" @click="show(market.id)">
+                      <i class="fa fa-eye"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+        <div class="overlay"
+             v-if="loading">
+          <i class="fa fa-refresh fa-spin"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+  <table-pagination :pagination="pagination"
+                    @changePage="changePage"
+                    @prev="prev"
+                    @next="next"></table-pagination>
+  <plus-button target="market_form"></plus-button>
+  <market-form @onAdd="addMarket" :isEdit="isEdit" @onClose="formClose" :areas="areas"></market-form>
+</div>
+

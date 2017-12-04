@@ -7,7 +7,6 @@ use App\Models\Area;
 use App\Http\Resources\Area\AreaR;
 use App\Http\Resources\Area\AreaRCollection;
 
-
 class AreaController extends Controller
 {
     public function index()
@@ -55,5 +54,11 @@ class AreaController extends Controller
         $area = Area::find($id);
         $area->update($request->all());
         return new AreaR($area);
+    }
+
+    public function getAreaForCombo()
+    {
+        $areas = Area::select('id', 'name')->orderBy('name')->get();
+        return response()->json($areas, 200);
     }
 }

@@ -123,6 +123,13 @@ return [
             
         ],
         [
+            'text' => 'Market',
+            'url'  => '/markets',
+            'icon' => 'balance-scale',
+            'active' => ['/markets', '/markets/*']
+            
+        ],
+        [
             'text'        => 'Pages',
             'url'         => 'admin/pages',
             'icon'        => 'file',

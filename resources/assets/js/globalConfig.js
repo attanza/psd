@@ -1,8 +1,12 @@
 export const apiDomain = baseUrl + '/'
-
+// Area
 export const areaListUrl = apiDomain + 'api/area-list'
 export const areaUrl = apiDomain + 'api/area'
+export const areaComboUrl = apiDomain + 'api/area/for/combo'
+// Market
+export const marketListUrl = apiDomain + 'api/market-list'
+export const marketUrl = apiDomain + 'api/market'
+export const marketWebUrl = apiDomain + 'market/'
 
-
-
-
+// Media
+export const mediaUploadUrl = apiDomain + 'api/media-upload'

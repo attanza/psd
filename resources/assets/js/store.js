@@ -6,7 +6,8 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
   state: {
     user: {},
-    currentArea: {}
+    currentArea: {},
+    currentMarket: {}
   },
 
   getters: {
@@ -19,6 +20,9 @@ export const store = new Vuex.Store({
     },
     currentArea(state, p) {
       state.currentArea = p
+    },
+    currentMarket(state, p) {
+      state.currentMarket = p
     }
   }
 })
