@@ -18,5 +18,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// Product
 	Route::get('/products', 'ProductController@index')->name('products.index');
 	Route::get('/products/{id}', 'ProductController@show')->name('products.show');
+	// Stokists
+	Route::get('/stokists', 'StokistController@index')->name('stokists.index');
+	Route::get('/stokists/{id}', 'StokistController@show')->name('stokists.show');
 
 });

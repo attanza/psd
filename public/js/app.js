@@ -3126,6 +3126,615 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /***/ }),
 
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistForm.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_catchJsonErrors_js__ = __webpack_require__("./resources/assets/js/mixins/catchJsonErrors.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__globalConfig_js__ = __webpack_require__("./resources/assets/js/globalConfig.js");
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      id: '',
+      area_id: '',
+      code: '',
+      name: '',
+      address: '',
+      owner: '',
+      pic: '',
+      phone1: '',
+      phone2: '',
+      email: '',
+      modalTitle: 'Add stokist'
+    };
+  },
+
+  props: ['isEdit', 'areas'],
+  watch: {
+    isEdit: function isEdit() {
+      if (this.isEdit) {
+        this.fillForm();
+      }
+    }
+  },
+  methods: {
+    submit: function submit() {
+      var _this = this;
+
+      this.$validator.validateAll().then(function (result) {
+        if (result) {
+          if (_this.isEdit) {
+            _this.editStokist();
+          } else {
+            _this.submitStokist();
+          }
+          return;
+        }
+      });
+    },
+    submitStokist: function submitStokist() {
+      var _this2 = this;
+
+      axios.post(__WEBPACK_IMPORTED_MODULE_1__globalConfig_js__["l" /* stokistUrl */], this.getData()).then(function (resp) {
+        if (resp.status === 201) {
+          _this2.$emit('onAdd', resp.data.data);
+          _this2.handleClose();
+        }
+      }).catch(function (error) {
+        _this2.catchError(error.response);
+      });
+    },
+    editStokist: function editStokist() {
+      var _this3 = this;
+
+      axios.put(__WEBPACK_IMPORTED_MODULE_1__globalConfig_js__["l" /* stokistUrl */] + '/' + this.id, this.getData()).then(function (resp) {
+        if (resp.status === 200) {
+          _this3.$emit('onEdit', resp.data.data);
+        }
+      }).catch(function (error) {
+        _this3.catchError(error.response);
+      });
+    },
+    getData: function getData() {
+      return {
+        area_id: this.area_id,
+        code: this.code,
+        name: this.name,
+        owner: this.owner,
+        pic: this.pic,
+        phone1: this.phone1,
+        phone2: this.phone2,
+        email: this.email,
+        address: this.address,
+        lat: -6.2295712,
+        lng: 106.759478
+      };
+    },
+    clear: function clear() {
+      this.dialogTitle = 'Add stokist';
+      this.id = '';
+      this.area_id = '';
+      this.code = '';
+      this.name = '';
+      this.owner = '';
+      this.pic = '';
+      this.phone1 = '';
+      this.phone2 = '';
+      this.email = '';
+      this.address = '';
+      this.$validator.reset();
+    },
+    fillForm: function fillForm() {
+      if (this.stokist) {
+        this.modalTitle = 'Edit stokist';
+        this.id = this.stokist.id;
+        this.area_id = this.stokist.area_id;
+        this.code = this.stokist.code;
+        this.name = this.stokist.name;
+        this.owner = this.stokist.owner;
+        this.pic = this.stokist.pic;
+        this.phone1 = this.stokist.phone1;
+        this.phone2 = this.stokist.phone2;
+        this.email = this.stokist.email;
+        this.address = this.stokist.address;
+      }
+    },
+    handleClose: function handleClose() {
+      this.clear();
+      this.$emit('onClose');
+    }
+  },
+  computed: {
+    stokist: function stokist() {
+      return this.$store.state.currentStokist;
+    }
+  },
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_catchJsonErrors_js__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistInfo.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__StokistForm__ = __webpack_require__("./resources/assets/js/components/stokists/StokistForm.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__StokistForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0__StokistForm__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    StokistForm: __WEBPACK_IMPORTED_MODULE_0__StokistForm___default.a
+  },
+  data: function data() {
+    return {
+      isEdit: false
+    };
+  },
+
+  props: ['areas'],
+  methods: {
+    editStokist: function editStokist() {
+      this.isEdit = true;
+      $('#stokist_form').modal('show');
+    },
+    onClose: function onClose() {
+      this.isEdit = false;
+      $('#stokist_form').modal('hide');
+    },
+    updateStokist: function updateStokist(stokist) {
+      this.$store.commit('currentStokist', stokist);
+      this.onClose();
+    }
+  },
+  computed: {
+    stokist: function stokist() {
+      return this.$store.state.currentStokist;
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistInit.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['stokist'],
+  created: function created() {
+    this.$store.commit('currentStokist', this.stokist);
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistList.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__globalConfig__ = __webpack_require__("./resources/assets/js/globalConfig.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__mixins_paginationData__ = __webpack_require__("./resources/assets/js/mixins/paginationData.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__mixins_catchJsonErrors__ = __webpack_require__("./resources/assets/js/mixins/catchJsonErrors.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slots_TableSearch4__ = __webpack_require__("./resources/assets/js/components/slots/TableSearch4.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__slots_TableSearch4___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3__slots_TableSearch4__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__slots_TablePagination__ = __webpack_require__("./resources/assets/js/components/slots/TablePagination.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__slots_TablePagination___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4__slots_TablePagination__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__slots_PlusButton__ = __webpack_require__("./resources/assets/js/components/slots/PlusButton.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__slots_PlusButton___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5__slots_PlusButton__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__StokistForm__ = __webpack_require__("./resources/assets/js/components/stokists/StokistForm.vue");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__StokistForm___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6__StokistForm__);
+//
+
+
+
+
+
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    TableSearch4: __WEBPACK_IMPORTED_MODULE_3__slots_TableSearch4___default.a, TablePagination: __WEBPACK_IMPORTED_MODULE_4__slots_TablePagination___default.a, PlusButton: __WEBPACK_IMPORTED_MODULE_5__slots_PlusButton___default.a, StokistForm: __WEBPACK_IMPORTED_MODULE_6__StokistForm___default.a
+  },
+  data: function data() {
+    return {
+      stokists: [],
+      areas: [],
+      areaId: '',
+      groupBy: 'Area',
+      isEdit: false
+    };
+  },
+
+  props: ['product_type'],
+  mounted: function mounted() {
+    this.getAreas();
+    this.getstokists(this.pagination.current_page);
+    this.$on('stokists', function (stokists) {
+      this.stokists = stokists;
+    });
+    this.$on('pagination', function (pagination) {
+      this.pagination = pagination;
+      this.loading = false;
+    });
+    this.$on('areas', function (areas) {
+      this.areas = areas;
+    });
+  },
+
+  methods: {
+    getAreas: function getAreas() {
+      var _this = this;
+
+      axios.get(__WEBPACK_IMPORTED_MODULE_0__globalConfig__["a" /* areaComboUrl */]).then(function (resp) {
+        if (resp.status === 200) {
+          _this.$emit('areas', resp.data);
+        }
+      }).catch(function (error) {
+        _this.catchError(error.response);
+      });
+    },
+    getstokists: function getstokists(page) {
+      var _this2 = this;
+
+      this.loading = true;
+      axios.post(__WEBPACK_IMPORTED_MODULE_0__globalConfig__["k" /* stokistListUrl */] + '?page=' + page, this.postData()).then(function (resp) {
+        if (resp.status === 200) {
+          _this2.$emit('stokists', resp.data.data);
+          _this2.$emit('pagination', resp.data.meta);
+        }
+      }).catch(function (error) {
+        _this2.catchError(error.response);
+      });
+    },
+    postData: function postData() {
+      return {
+        searchQ: this.searchQ,
+        paginate: this.paginate,
+        areaId: this.areaId
+      };
+    },
+
+    search: _.debounce(function (data) {
+      this.searchQ = data.searchQ;
+      this.areaId = data.comboId;
+      this.getstokists(1);
+    }, 500),
+    changePaginate: function changePaginate(p) {
+      this.paginate = p;
+      this.getstokists(1);
+    },
+    changePage: function changePage(p) {
+      this.pagination.current_page = p;
+      this.getstokists(p);
+    },
+    prev: function prev() {
+      this.pagination.current_page = this.pagination.current_page - 1;
+      this.getstokists(this.pagination.current_page);
+    },
+    next: function next() {
+      this.pagination.current_page = this.pagination.current_page + 1;
+      this.getstokists(this.pagination.current_page);
+    },
+    addStokist: function addStokist(stokist) {
+      this.stokists.unshift(stokist);
+    },
+    show: function show(id) {
+      window.location.href = __WEBPACK_IMPORTED_MODULE_0__globalConfig__["m" /* stokistWebUrl */] + id;
+    },
+    formClose: function formClose() {
+      this.isEdit = false;
+      $('#stokist_form').modal('hide');
+    }
+  },
+  mixins: [__WEBPACK_IMPORTED_MODULE_1__mixins_paginationData__["a" /* default */], __WEBPACK_IMPORTED_MODULE_2__mixins_catchJsonErrors__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__mixins_catchJsonErrors_js__ = __webpack_require__("./resources/assets/js/mixins/catchJsonErrors.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__globalConfig_js__ = __webpack_require__("./resources/assets/js/globalConfig.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  data: function data() {
+    return {
+      location: {
+        lat: 10.0,
+        lng: 10.0,
+        location: ''
+      },
+      markers: [{
+        position: {
+          lat: 10.0,
+          lng: 10.0
+        }
+      }],
+      showModal: false,
+      snackbar: false,
+      snackTime: 5000
+    };
+  },
+  mounted: function mounted() {
+    this.setInitLoc();
+  },
+
+  methods: {
+    setPlace: function setPlace(place) {
+      this.location = {
+        lat: place.geometry.location.lat(),
+        lng: place.geometry.location.lng(),
+        location: place.formatted_address
+      };
+    },
+    markerDrag: function markerDrag(position) {
+      this.location = {
+        lat: position.lat(),
+        lng: position.lng()
+      };
+    },
+    setLocation: function setLocation() {
+      var _this = this;
+
+      axios.put(__WEBPACK_IMPORTED_MODULE_1__globalConfig_js__["l" /* stokistUrl */] + '/' + this.stokist.id + '/location', {
+        lat: this.location.lat,
+        lng: this.location.lng,
+        location: this.location.location
+      }).then(function (resp) {
+        if (resp.status === 200) {
+          _this.$store.commit('currentStokist', resp.data.data);
+          _this.throw_noty('success', 'Location saved');
+        }
+      }).catch(function (error) {
+        console.log(error.response);
+      });
+    },
+
+    setInitLoc: _.debounce(function () {
+      if (this.stokist) {
+        this.location.lat = this.stokist.lat;
+        this.location.lng = this.stokist.lng;
+      }
+    }, 1000)
+  },
+  computed: {
+    stokist: function stokist() {
+      return this.$store.state.currentStokist;
+    }
+  },
+  mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_catchJsonErrors_js__["a" /* default */]]
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue":
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__ = __webpack_require__("./node_modules/vue2-dropzone/dist/vue2-dropzone.js");
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue2_dropzone__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__globalConfig_js__ = __webpack_require__("./resources/assets/js/globalConfig.js");
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    Dropzone: __WEBPACK_IMPORTED_MODULE_0_vue2_dropzone___default.a
+  },
+  data: function data() {
+    return {
+      stokist_id: '',
+      media: {
+        url: '',
+        headers: null,
+        maxFile: 5
+      }
+    };
+  },
+  created: function created() {
+    var token = document.head.querySelector('meta[name="csrf-token"]');
+    this.media.url = __WEBPACK_IMPORTED_MODULE_1__globalConfig_js__["g" /* mediaUploadUrl */];
+    this.media.headers = {
+      'X-CSRF-TOKEN': token.content
+    };
+  },
+  mounted: function mounted() {
+    if (this.stokist) {
+      this.stokist_id = this.stokist.id;
+    }
+  },
+
+  methods: {
+    showSuccess: function showSuccess(file, response) {
+      this.$store.commit('currentStokist', response.data);
+      var vm = this;
+      vm.$refs.myVueDropzone.removeFile(file);
+      $('#dropzone_uploader').modal('hide');
+    },
+    sending: function sending(file, xhr, formData) {
+      formData.append('model', 'stokist');
+      formData.append('id', this.stokist_id);
+    },
+    showUploader: function showUploader() {
+      $('#dropzone_uploader').modal('show');
+    }
+  },
+  computed: {
+    stokist: function stokist() {
+      return this.$store.state.currentStokist;
+    }
+  }
+});
+
+/***/ }),
+
 /***/ "./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue2-google-maps/dist/components/autocompleteImpl.js":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3838,6 +4447,21 @@ exports.default = {
 
 /***/ }),
 
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17967491\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\ninput[data-v-17967491] {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  border: 1px solid transparent;\n  border-radius: 3px;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  font-size: 1rem;\n  height: 2.25em;\n  -webkit-box-pack: start;\n  -ms-flex-pack: start;\n  justify-content: flex-end;\n  line-height: 1.5;\n  padding-bottom: calc(0.375em - 1px);\n  padding-left: calc(0.625em - 1px);\n  padding-right: calc(0.625em - 1px);\n  padding-top: calc(0.375em - 1px);\n  position: relative;\n  vertical-align: top;\n  background-color: white;\n  border-color: #dbdbdb;\n  color: #363636;\n  -webkit-box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);\n  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);\n  width: 100%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
 /***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1a9b410e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/products/ProductList.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -3862,6 +4486,21 @@ exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/cs
 
 // module
 exports.push([module.i, "\ninput[data-v-1d481a01] {\n  -moz-appearance: none;\n  -webkit-appearance: none;\n  -webkit-box-align: center;\n  -ms-flex-align: center;\n  align-items: center;\n  border: 1px solid transparent;\n  border-radius: 3px;\n  -webkit-box-shadow: none;\n  box-shadow: none;\n  display: -webkit-inline-box;\n  display: -ms-inline-flexbox;\n  display: inline-flex;\n  font-size: 1rem;\n  height: 2.25em;\n  -webkit-box-pack: start;\n  -ms-flex-pack: start;\n  justify-content: flex-end;\n  line-height: 1.5;\n  padding-bottom: calc(0.375em - 1px);\n  padding-left: calc(0.625em - 1px);\n  padding-right: calc(0.625em - 1px);\n  padding-top: calc(0.375em - 1px);\n  position: relative;\n  vertical-align: top;\n  background-color: white;\n  border-color: #dbdbdb;\n  color: #363636;\n  -webkit-box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);\n  box-shadow: inset 0 1px 2px rgba(10, 10, 10, 0.1);\n  width: 100%;\n}\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cb7f27\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__("./node_modules/css-loader/lib/css-base.js")(undefined);
+// imports
+
+
+// module
+exports.push([module.i, "\n.image-wrapper[data-v-61cb7f27] {\n  min-height: 40vh;\n  max-height: 80vh;\n  background-repeat: no-repeat;\n  background-size: cover;\n  background-position: center;\n  overflow: hidden;\n}\n", ""]);
 
 // exports
 
@@ -39428,6 +40067,110 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-17967491\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "stokist_map" } }, [
+    _c("div", { staticClass: "box box-danger box-solid" }, [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("div", { staticClass: "row" }, [
+          _vm._m(0, false, false),
+          _vm._v(" "),
+          _c(
+            "div",
+            { staticClass: "col-sm-4" },
+            [
+              _c("gmap-autocomplete", {
+                staticClass: "m-t-5",
+                on: { place_changed: _vm.setPlace }
+              })
+            ],
+            1
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
+        _c(
+          "div",
+          {
+            staticStyle: { width: "100%", height: "40vh" },
+            attrs: { id: "location" }
+          },
+          [
+            _c(
+              "gmap-map",
+              {
+                staticStyle: { width: "100%", height: "40vh" },
+                attrs: { center: _vm.location, zoom: 12 }
+              },
+              [
+                _c("gmap-marker", {
+                  attrs: {
+                    position: _vm.location,
+                    clickable: true,
+                    draggable: true
+                  },
+                  on: {
+                    click: function($event) {
+                      _vm.center = _vm.location
+                    },
+                    place_changed: _vm.setPlace,
+                    position_changed: function($event) {
+                      _vm.markerDrag($event)
+                    }
+                  }
+                })
+              ],
+              1
+            )
+          ],
+          1
+        )
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-footer" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger pull-right",
+                on: { click: _vm.setLocation }
+              },
+              [_vm._v("\n            Save Location\n          ")]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "col-sm-8" }, [
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Stokist Map")])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-17967491", module.exports)
+  }
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-17fc7ddc\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./node_modules/vue2-google-maps/dist/components/infoWindow.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -39620,7 +40363,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "col-sm-8" }, [
-      _c("h3", { staticClass: "box-title" }, [_vm._v("Apartment Map")])
+      _c("h3", { staticClass: "box-title" }, [_vm._v("Market Map")])
     ])
   }
 ]
@@ -39630,6 +40373,826 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-1d481a01", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-21303342\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./resources/assets/js/components/stokists/stokistForm.html":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", [
+    _c("div", { staticClass: "modal", attrs: { id: "stokist_form" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-header" }, [
+            _vm._m(0, false, false),
+            _vm._v(" "),
+            _c("h4", { staticClass: "modal-title" }, [
+              _vm._v(_vm._s(_vm.modalTitle))
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-body" }, [
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("area_id") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "area_id" } },
+                  [_vm._v("Area\n            ")]
+                ),
+                _vm._v(" "),
+                _c(
+                  "select",
+                  {
+                    directives: [
+                      {
+                        name: "model",
+                        rawName: "v-model",
+                        value: _vm.area_id,
+                        expression: "area_id"
+                      },
+                      {
+                        name: "validate",
+                        rawName: "v-validate",
+                        value: "required|integer",
+                        expression: "'required|integer'"
+                      }
+                    ],
+                    staticClass: "form-control",
+                    attrs: {
+                      name: "area_id",
+                      type: "text",
+                      "data-vv-as": "Area"
+                    },
+                    on: {
+                      change: function($event) {
+                        var $$selectedVal = Array.prototype.filter
+                          .call($event.target.options, function(o) {
+                            return o.selected
+                          })
+                          .map(function(o) {
+                            var val = "_value" in o ? o._value : o.value
+                            return val
+                          })
+                        _vm.area_id = $event.target.multiple
+                          ? $$selectedVal
+                          : $$selectedVal[0]
+                      }
+                    }
+                  },
+                  [
+                    _c(
+                      "option",
+                      { attrs: { value: "", selected: "", disabled: "" } },
+                      [_vm._v("Select Area")]
+                    ),
+                    _vm._v(" "),
+                    _vm._l(_vm.areas, function(area) {
+                      return _c("option", { domProps: { value: area.id } }, [
+                        _vm._v(_vm._s(area.name))
+                      ])
+                    })
+                  ],
+                  2
+                ),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("area_id"),
+                        expression: "errors.has('area_id')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("area_id")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("code") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "code" } },
+                  [_vm._v("Code\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.code,
+                      expression: "code"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|min:3|max:50",
+                      expression: "'required|min:3|max:50'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "code",
+                    type: "text",
+                    placeholder: "Stokist code",
+                    "data-vv-as": "Stokist code"
+                  },
+                  domProps: { value: _vm.code },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.code = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("code"),
+                        expression: "errors.has('code')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("code")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("name") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "name" } },
+                  [_vm._v("Name\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.name,
+                      expression: "name"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|min:3|max:50",
+                      expression: "'required|min:3|max:50'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "name",
+                    type: "text",
+                    placeholder: "Stokist Name",
+                    "data-vv-as": "Stokist Name"
+                  },
+                  domProps: { value: _vm.name },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.name = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("name"),
+                        expression: "errors.has('name')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("name")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("owner") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "owner" } },
+                  [_vm._v("Owner\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.owner,
+                      expression: "owner"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|min:3|max:50",
+                      expression: "'required|min:3|max:50'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "owner",
+                    type: "text",
+                    placeholder: "Stokist owner",
+                    "data-vv-as": "Stokist owner"
+                  },
+                  domProps: { value: _vm.owner },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.owner = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("owner"),
+                        expression: "errors.has('owner')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("owner")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("pic") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "pic" } },
+                  [_vm._v("Person in Charge\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.pic,
+                      expression: "pic"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|min:3|max:50",
+                      expression: "'required|min:3|max:50'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "pic",
+                    type: "text",
+                    placeholder: "Stokist PIC",
+                    "data-vv-as": "Stokist PIC"
+                  },
+                  domProps: { value: _vm.pic },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.pic = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("pic"),
+                        expression: "errors.has('pic')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("pic")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("phone1") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "phone1" } },
+                  [_vm._v("Phone Number\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.phone1,
+                      expression: "phone1"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|numeric",
+                      expression: "'required|numeric'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "phone1",
+                    type: "text",
+                    placeholder: "Phone Number",
+                    "data-vv-as": "Phone Number"
+                  },
+                  domProps: { value: _vm.phone1 },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.phone1 = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("phone1"),
+                        expression: "errors.has('phone1')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("phone1")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("phone2") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "phone2" } },
+                  [_vm._v("Other Phone Number\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.phone2,
+                      expression: "phone2"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "numeric",
+                      expression: "'numeric'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "phone2",
+                    type: "text",
+                    placeholder: "Other Phone Number",
+                    "data-vv-as": "Other Phone Number"
+                  },
+                  domProps: { value: _vm.phone2 },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.phone2 = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("phone2"),
+                        expression: "errors.has('phone2')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("phone2")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("email") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "email" } },
+                  [_vm._v("Email\n            ")]
+                ),
+                _vm._v(" "),
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.email,
+                      expression: "email"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "required|email",
+                      expression: "'required|email'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "email",
+                    type: "text",
+                    placeholder: "Email",
+                    "data-vv-as": "Email"
+                  },
+                  domProps: { value: _vm.email },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.email = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("email"),
+                        expression: "errors.has('email')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("email")))]
+                )
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "form-group",
+                class: { "has-error": _vm.errors.has("address") }
+              },
+              [
+                _c(
+                  "label",
+                  { staticClass: "control-label", attrs: { for: "address" } },
+                  [_vm._v("Address\n            ")]
+                ),
+                _vm._v(" "),
+                _c("textarea", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.address,
+                      expression: "address"
+                    },
+                    {
+                      name: "validate",
+                      rawName: "v-validate",
+                      value: "max:200",
+                      expression: "'max:200'"
+                    }
+                  ],
+                  staticClass: "form-control",
+                  attrs: {
+                    name: "address",
+                    placeholder: "Address",
+                    "data-vv-as": "address"
+                  },
+                  domProps: { value: _vm.address },
+                  on: {
+                    input: function($event) {
+                      if ($event.target.composing) {
+                        return
+                      }
+                      _vm.address = $event.target.value
+                    }
+                  }
+                }),
+                _vm._v(" "),
+                _c(
+                  "span",
+                  {
+                    directives: [
+                      {
+                        name: "show",
+                        rawName: "v-show",
+                        value: _vm.errors.has("address"),
+                        expression: "errors.has('address')"
+                      }
+                    ],
+                    staticClass: "help-block"
+                  },
+                  [_vm._v(_vm._s(_vm.errors.first("address")))]
+                )
+              ]
+            )
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "modal-footer" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-default pull-left",
+                attrs: { type: "button" },
+                on: { click: _vm.handleClose }
+              },
+              [_vm._v("Close")]
+            ),
+            _vm._v(" "),
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger",
+                attrs: { type: "button" },
+                on: { click: _vm.submit }
+              },
+              [
+                _c("i", { staticClass: "fa fa-floppy-o m-r-5" }),
+                _vm._v(" Save\n                  ")
+              ]
+            )
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "button",
+      {
+        staticClass: "close",
+        attrs: {
+          type: "button",
+          "data-dismiss": "modal",
+          "aria-label": "Close"
+        }
+      },
+      [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
+    )
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-21303342", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-23610d39\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./resources/assets/js/components/stokists/stokistList.html":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { attrs: { id: "stokist_list" } },
+    [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-lg-12" }, [
+          _c("div", { staticClass: "box box-danger" }, [
+            _c(
+              "div",
+              { staticClass: "box-header" },
+              [
+                _c("table-search4", {
+                  attrs: {
+                    perPages: _vm.perPages,
+                    loading: _vm.loading,
+                    paginate: _vm.paginate,
+                    comboData: _vm.areas,
+                    groupBy: _vm.groupBy
+                  },
+                  on: { search: _vm.search, changePaginate: _vm.changePaginate }
+                })
+              ],
+              1
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "box-body",
+                staticStyle: { "margin-top": "-20px" }
+              },
+              [
+                _c("div", { staticClass: "table-responsive" }, [
+                  _c(
+                    "table",
+                    {
+                      staticClass:
+                        "table table-bordered table-hover table-condensed sortable"
+                    },
+                    [
+                      _vm._m(0, false, false),
+                      _vm._v(" "),
+                      _c(
+                        "tbody",
+                        _vm._l(_vm.stokists, function(stokist) {
+                          return _c("tr", [
+                            _c("td", [_vm._v(_vm._s(stokist.area))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(stokist.code))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(stokist.name))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(stokist.pic))]),
+                            _vm._v(" "),
+                            _c("td", [_vm._v(_vm._s(stokist.email))]),
+                            _vm._v(" "),
+                            _c("td", { attrs: { align: "center" } }, [
+                              _c(
+                                "button",
+                                {
+                                  staticClass: "btn btn-danger btn-xs",
+                                  on: {
+                                    click: function($event) {
+                                      _vm.show(stokist.id)
+                                    }
+                                  }
+                                },
+                                [_c("i", { staticClass: "fa fa-eye" })]
+                              )
+                            ])
+                          ])
+                        })
+                      )
+                    ]
+                  )
+                ])
+              ]
+            ),
+            _vm._v(" "),
+            _vm.loading
+              ? _c("div", { staticClass: "overlay" }, [
+                  _c("i", { staticClass: "fa fa-refresh fa-spin" })
+                ])
+              : _vm._e()
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("table-pagination", {
+        attrs: { pagination: _vm.pagination },
+        on: { changePage: _vm.changePage, prev: _vm.prev, next: _vm.next }
+      }),
+      _vm._v(" "),
+      _c("plus-button", { attrs: { target: "stokist_form" } }),
+      _vm._v(" "),
+      _c("stokist-form", {
+        attrs: { isEdit: _vm.isEdit, areas: _vm.areas },
+        on: { onAdd: _vm.addStokist, onClose: _vm.formClose }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("thead", [
+      _c("tr", [
+        _c("th", [_vm._v("Area")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Code")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Name")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("PIC")]),
+        _vm._v(" "),
+        _c("th", [_vm._v("Email")]),
+        _vm._v(" "),
+        _c("th")
+      ])
+    ])
+  }
+]
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-23610d39", module.exports)
   }
 }
 
@@ -39655,6 +41218,136 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-2c922d06", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-39a78eaa\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistInit.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div")
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-39a78eaa", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-44718d6e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistInfo.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c(
+    "div",
+    { staticClass: "box box-danger box-solid" },
+    [
+      _c("div", { staticClass: "box-header with-border" }, [
+        _c("h3", { staticClass: "box-title" }, [_vm._v("Stokist Info")]),
+        _vm._v(" "),
+        _c("div", { staticClass: "box-tools pull-right" }, [
+          _c(
+            "button",
+            {
+              staticClass: "btn btn-box-tool",
+              attrs: { type: "button" },
+              on: { click: _vm.editStokist }
+            },
+            [_c("i", { staticClass: "fa fa-pencil" })]
+          )
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-body" }, [
+        _c("table", { staticClass: "table" }, [
+          _c("tbody", [
+            _c("tr", [
+              _c("th", { attrs: { width: "30%" } }, [_vm._v("Area")]),
+              _vm._v(" "),
+              _c("td", { attrs: { width: "70%" } }, [
+                _vm._v(_vm._s(_vm.stokist.area))
+              ])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Code")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.code))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Name")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.name))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Owner")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.owner))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Person in Charge")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.pic))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Phone")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.phone1))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Other Phone")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.phone2))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Email")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.email))])
+            ]),
+            _vm._v(" "),
+            _c("tr", [
+              _c("th", [_vm._v("Address")]),
+              _vm._v(" "),
+              _c("td", [_vm._v(_vm._s(_vm.stokist.address))])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("stokist-form", {
+        attrs: { isEdit: _vm.isEdit, areas: _vm.areas },
+        on: { onClose: _vm.onClose, onEdit: _vm.updateStokist }
+      })
+    ],
+    1
+  )
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-44718d6e", module.exports)
   }
 }
 
@@ -39790,6 +41483,82 @@ if (false) {
   module.hot.accept()
   if (module.hot.data) {
     require("vue-hot-reload-api")      .rerender("data-v-5837d46e", module.exports)
+  }
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-61cb7f27\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var render = function() {
+  var _vm = this
+  var _h = _vm.$createElement
+  var _c = _vm._self._c || _h
+  return _c("div", { attrs: { id: "stokist_photo" } }, [
+    _c("div", { staticClass: "box box-widget" }, [
+      _c("div", { staticClass: "box-body" }, [
+        _c("div", { staticClass: "thumbnail" }, [
+          _c("img", { attrs: { src: _vm.stokist.photo } })
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "box-footer" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-md-12" }, [
+            _c(
+              "button",
+              {
+                staticClass: "btn btn-danger pull-right",
+                on: { click: _vm.showUploader }
+              },
+              [_c("i", { staticClass: "fa fa-camera" })]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "modal", attrs: { id: "dropzone_uploader" } }, [
+      _c("div", { staticClass: "modal-dialog" }, [
+        _c("div", { staticClass: "modal-content" }, [
+          _c("div", { staticClass: "modal-body" }, [
+            _c("div", { staticClass: "row" }, [
+              _c(
+                "div",
+                { staticClass: "col-sm-12" },
+                [
+                  _c("dropzone", {
+                    ref: "myVueDropzone",
+                    attrs: {
+                      id: "myVueDropzone",
+                      url: _vm.media.url,
+                      maxFileSizeInMB: _vm.media.maxFile,
+                      headers: _vm.media.headers,
+                      "use-font-awesome": true
+                    },
+                    on: {
+                      "vdropzone-success": _vm.showSuccess,
+                      "vdropzone-sending": _vm.sending
+                    }
+                  })
+                ],
+                1
+              )
+            ])
+          ])
+        ])
+      ])
+    ])
+  ])
+}
+var staticRenderFns = []
+render._withStripped = true
+module.exports = { render: render, staticRenderFns: staticRenderFns }
+if (false) {
+  module.hot.accept()
+  if (module.hot.data) {
+    require("vue-hot-reload-api")      .rerender("data-v-61cb7f27", module.exports)
   }
 }
 
@@ -41371,6 +43140,33 @@ if (false) {
 
 /***/ }),
 
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17967491\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17967491\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("dc8cd0f2", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17967491\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./StokistMap.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17967491\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./StokistMap.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
 /***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1a9b410e\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/products/ProductList.vue":
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -41415,6 +43211,33 @@ if(false) {
  if(!content.locals) {
    module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1d481a01\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MarketMap.vue", function() {
      var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-1d481a01\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./MarketMap.vue");
+     if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+     update(newContent);
+   });
+ }
+ // When the module is disposed, remove the <style> tags
+ module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+
+/***/ "./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cb7f27\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__("./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cb7f27\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue");
+if(typeof content === 'string') content = [[module.i, content, '']];
+if(content.locals) module.exports = content.locals;
+// add the styles to the DOM
+var update = __webpack_require__("./node_modules/vue-style-loader/lib/addStylesClient.js")("39a4e80a", content, false);
+// Hot Module Replacement
+if(false) {
+ // When the styles change, update the <style> tags
+ if(!content.locals) {
+   module.hot.accept("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cb7f27\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./StokistPhoto.vue", function() {
+     var newContent = require("!!../../../../../node_modules/css-loader/index.js!../../../../../node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cb7f27\",\"scoped\":true,\"hasInlineConfig\":true}!../../../../../node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./StokistPhoto.vue");
      if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
      update(newContent);
    });
@@ -55348,6 +57171,12 @@ Vue.component('product-form', __webpack_require__("./resources/assets/js/compone
 Vue.component('product-init', __webpack_require__("./resources/assets/js/components/products/ProductInit.vue"));
 Vue.component('product-photo', __webpack_require__("./resources/assets/js/components/products/ProductPhoto.vue"));
 Vue.component('product-info', __webpack_require__("./resources/assets/js/components/products/ProductInfo.vue"));
+// Stokist
+Vue.component('stokist-list', __webpack_require__("./resources/assets/js/components/stokists/StokistList.vue"));
+Vue.component('stokist-init', __webpack_require__("./resources/assets/js/components/stokists/StokistInit.vue"));
+Vue.component('stokist-photo', __webpack_require__("./resources/assets/js/components/stokists/StokistPhoto.vue"));
+Vue.component('stokist-info', __webpack_require__("./resources/assets/js/components/stokists/StokistInfo.vue"));
+Vue.component('stokist-map', __webpack_require__("./resources/assets/js/components/stokists/StokistMap.vue"));
 
 /***/ }),
 
@@ -56200,6 +58029,308 @@ module.exports = Component.exports
 
 /***/ }),
 
+/***/ "./resources/assets/js/components/stokists/StokistForm.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistForm.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-21303342\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./resources/assets/js/components/stokists/stokistForm.html")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/stokists/StokistForm.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-21303342", Component.options)
+  } else {
+    hotAPI.reload("data-v-21303342", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/stokists/StokistInfo.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistInfo.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-44718d6e\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistInfo.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/stokists/StokistInfo.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-44718d6e", Component.options)
+  } else {
+    hotAPI.reload("data-v-44718d6e", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/stokists/StokistInit.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistInit.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-39a78eaa\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistInit.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/stokists/StokistInit.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-39a78eaa", Component.options)
+  } else {
+    hotAPI.reload("data-v-39a78eaa", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/stokists/StokistList.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistList.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-23610d39\",\"hasScoped\":false,\"buble\":{\"transforms\":{}}}!./resources/assets/js/components/stokists/stokistList.html")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = null
+/* scopeId */
+var __vue_scopeId__ = null
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/stokists/StokistList.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-23610d39", Component.options)
+  } else {
+    hotAPI.reload("data-v-23610d39", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/stokists/StokistMap.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-17967491\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-17967491\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistMap.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-17967491"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/stokists/StokistMap.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-17967491", Component.options)
+  } else {
+    hotAPI.reload("data-v-17967491", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
+/***/ "./resources/assets/js/components/stokists/StokistPhoto.vue":
+/***/ (function(module, exports, __webpack_require__) {
+
+var disposed = false
+function injectStyle (ssrContext) {
+  if (disposed) return
+  __webpack_require__("./node_modules/vue-style-loader/index.js!./node_modules/css-loader/index.js!./node_modules/vue-loader/lib/style-compiler/index.js?{\"vue\":true,\"id\":\"data-v-61cb7f27\",\"scoped\":true,\"hasInlineConfig\":true}!./node_modules/vue-loader/lib/selector.js?type=styles&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue")
+}
+var normalizeComponent = __webpack_require__("./node_modules/vue-loader/lib/component-normalizer.js")
+/* script */
+var __vue_script__ = __webpack_require__("./node_modules/babel-loader/lib/index.js?{\"cacheDirectory\":true,\"presets\":[[\"env\",{\"modules\":false,\"targets\":{\"browsers\":[\"> 2%\"],\"uglify\":true}}]],\"plugins\":[\"transform-object-rest-spread\"]}!./node_modules/vue-loader/lib/selector.js?type=script&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue")
+/* template */
+var __vue_template__ = __webpack_require__("./node_modules/vue-loader/lib/template-compiler/index.js?{\"id\":\"data-v-61cb7f27\",\"hasScoped\":true,\"buble\":{\"transforms\":{}}}!./node_modules/vue-loader/lib/selector.js?type=template&index=0&bustCache!./resources/assets/js/components/stokists/StokistPhoto.vue")
+/* template functional */
+var __vue_template_functional__ = false
+/* styles */
+var __vue_styles__ = injectStyle
+/* scopeId */
+var __vue_scopeId__ = "data-v-61cb7f27"
+/* moduleIdentifier (server only) */
+var __vue_module_identifier__ = null
+var Component = normalizeComponent(
+  __vue_script__,
+  __vue_template__,
+  __vue_template_functional__,
+  __vue_styles__,
+  __vue_scopeId__,
+  __vue_module_identifier__
+)
+Component.options.__file = "resources/assets/js/components/stokists/StokistPhoto.vue"
+if (Component.esModule && Object.keys(Component.esModule).some(function (key) {  return key !== "default" && key.substr(0, 2) !== "__"})) {  console.error("named exports are not supported in *.vue files.")}
+
+/* hot reload */
+if (false) {(function () {
+  var hotAPI = require("vue-hot-reload-api")
+  hotAPI.install(require("vue"), false)
+  if (!hotAPI.compatible) return
+  module.hot.accept()
+  if (!module.hot.data) {
+    hotAPI.createRecord("data-v-61cb7f27", Component.options)
+  } else {
+    hotAPI.reload("data-v-61cb7f27", Component.options)
+' + '  }
+  module.hot.dispose(function (data) {
+    disposed = true
+  })
+})()}
+
+module.exports = Component.exports
+
+
+/***/ }),
+
 /***/ "./resources/assets/js/globalConfig.js":
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -56214,6 +58345,9 @@ module.exports = Component.exports
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return productListUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return productUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return productWebUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return stokistListUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return stokistUrl; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return stokistWebUrl; });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return mediaUploadUrl; });
 var apiDomain = baseUrl + '/';
 // Area
@@ -56228,6 +58362,10 @@ var marketWebUrl = apiDomain + 'market/';
 var productListUrl = apiDomain + 'api/product-list';
 var productUrl = apiDomain + 'api/product';
 var productWebUrl = apiDomain + 'products/';
+// Stokist
+var stokistListUrl = apiDomain + 'api/stokist-list';
+var stokistUrl = apiDomain + 'api/stokist';
+var stokistWebUrl = apiDomain + 'stokists/';
 // Media
 var mediaUploadUrl = apiDomain + 'api/media-upload';
 
@@ -56359,7 +58497,9 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
     user: {},
     currentArea: {},
     currentMarket: {},
-    currentProduct: {}
+    currentProduct: {},
+    currentStokist: {}
+
   },
 
   getters: {},
@@ -56374,8 +58514,8 @@ var store = new __WEBPACK_IMPORTED_MODULE_0_vuex__["a" /* default */].Store({
     currentMarket: function currentMarket(state, p) {
       state.currentMarket = p;
     },
-    currentProduct: function currentProduct(state, p) {
-      state.currentProduct = p;
+    currentStokist: function currentStokist(state, p) {
+      state.currentStokist = p;
     }
   }
 });

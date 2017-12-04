@@ -24,6 +24,13 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('product', 'ProductController@store')->name('product.store');
 	Route::put('product/{id}', 'ProductController@update')->name('product.update');
 
+	// stokist
+	Route::post('stokist-list', 'StokistController@getStokistList')->name('stokist.list');
+	Route::post('stokist', 'StokistController@store')->name('stokist.store');
+	Route::put('stokist/{id}', 'StokistController@update')->name('stokist.update');
+	Route::put('stokist/{id}/location', 'StokistController@saveLocation')->name('stokist.location');
+	
+
 	// Media
 	Route::post('media-upload', 'MediaController@upload');
 

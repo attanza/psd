@@ -40,3 +40,18 @@ $factory->define(App\Models\Product::class, function (Faker $faker) {
     'price' => $faker->numberBetween(100000, 200000)
   ];
 });
+
+$factory->define(App\Models\Stokist::class, function (Faker $faker) {
+  return [
+    'code' => $faker->unique()->ean8,
+    'name' => $faker->company,
+    'owner' => $faker->name,
+    'pic' => $faker->name,
+    'phone1' => $faker->e164PhoneNumber,
+    'phone2' => $faker->e164PhoneNumber,
+    'email' => $faker->unique()->email,
+    'address' => $faker->address,
+    'lat' => $faker->latitude,
+    'lng' => $faker->longitude,
+  ];
+});

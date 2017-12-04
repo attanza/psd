@@ -1,10 +1,10 @@
 <template>
-<div id="market_map">
+<div id="stokist_map">
   <div class="box box-danger box-solid">
     <div class="box-header with-border">
       <div class="row">
         <div class="col-sm-8">
-          <h3 class="box-title">Market Map</h3>
+          <h3 class="box-title">Stokist Map</h3>
         </div>
         <div class="col-sm-4">
           <gmap-autocomplete @place_changed="setPlace"
@@ -44,7 +44,7 @@
 
 <script>
 import catchJsonErrors from '../../mixins/catchJsonErrors.js';
-import { marketUrl } from '../../globalConfig.js';
+import { stokistUrl } from '../../globalConfig.js';
 export default {
   data: () => ({
     location: {
@@ -82,13 +82,13 @@ export default {
       }
     },
     setLocation() {
-      axios.put(marketUrl + '/' + this.market.id + '/location', {
+      axios.put(stokistUrl + '/' + this.stokist.id + '/location', {
         lat: this.location.lat,
         lng: this.location.lng,
         location: this.location.location
       }).then((resp) => {
         if (resp.status === 200) {
-          this.$store.commit('currentMarket', resp.data.data)
+          this.$store.commit('currentStokist', resp.data.data)
           this.throw_noty('success', 'Location saved')
         }
       }).catch(error => {
@@ -96,15 +96,15 @@ export default {
       })
     },
     setInitLoc: _.debounce(function() {
-      if (this.market) {
-        this.location.lat = this.market.lat
-        this.location.lng = this.market.lng
+      if (this.stokist) {
+        this.location.lat = this.stokist.lat
+        this.location.lng = this.stokist.lng
       }
     }, 1000)
   },
   computed: {
-    market() {
-      return this.$store.state.currentMarket
+    stokist() {
+      return this.$store.state.currentStokist
     }
   },
   mixins: [

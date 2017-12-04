@@ -8,7 +8,9 @@ export const store = new Vuex.Store({
     user: {},
     currentArea: {},
     currentMarket: {},
-    currentProduct: {}
+    currentProduct: {},
+    currentStokist: {}
+
   },
 
   getters: {
@@ -25,8 +27,8 @@ export const store = new Vuex.Store({
     currentMarket(state, p) {
       state.currentMarket = p
     },
-    currentProduct(state, p) {
-      state.currentProduct = p
+    currentStokist(state, p) {
+      state.currentStokist = p
     }
   }
 })

@@ -27,7 +27,7 @@ class MarketController extends Controller
         $searchQ = $request->input('searchQ');
         $areaId = $request->input('areaId');
         if ($searchQ != null || $searchQ != '') {
-            $markets = Market::orWhere('name', 'LIKE', "%$searchQ%")
+            $markets = Market::Where('name', 'LIKE', "%$searchQ%")
                 ->orWhere('address', 'LIKE', "%$searchQ%")
                 ->orderBy('name')->paginate($request->paginate);
         } elseif ($areaId != null || $areaId != '') {

@@ -17,3 +17,9 @@ Vue.component('product-form', require('./components/products/ProductForm.vue'));
 Vue.component('product-init', require('./components/products/ProductInit.vue'));
 Vue.component('product-photo', require('./components/products/ProductPhoto.vue'));
 Vue.component('product-info', require('./components/products/ProductInfo.vue'));
+// Stokist
+Vue.component('stokist-list', require('./components/stokists/StokistList.vue'));
+Vue.component('stokist-init', require('./components/stokists/StokistInit.vue'));
+Vue.component('stokist-photo', require('./components/stokists/StokistPhoto.vue'));
+Vue.component('stokist-info', require('./components/stokists/StokistInfo.vue'));
+Vue.component('stokist-map', require('./components/stokists/StokistMap.vue'));
