@@ -124,7 +124,7 @@ class StokistTest extends TestCase
     {
         $faker = Factory::create();
         return [
-        	'area_id' => rand(1,10),
+        	'area_id' => 1,
             'code' => $faker->unique()->ean8,
 		    'name' => $faker->company,
 		    'owner' => $faker->name,

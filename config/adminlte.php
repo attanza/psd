@@ -143,6 +143,13 @@ return [
             'active' => ['/stokists', '/stokists/*']
             
         ],
+        [
+            'text' => 'Store',
+            'url'  => '/stores',
+            'icon' => 'building-o',
+            'active' => ['/stores', '/stores/*']
+            
+        ],
         // [
         //     'text'        => 'Pages',
         //     'url'         => 'admin/pages',

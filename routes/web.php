@@ -21,5 +21,8 @@ Route::group(['middleware' => 'auth'], function () {
 	// Stokists
 	Route::get('/stokists', 'StokistController@index')->name('stokists.index');
 	Route::get('/stokists/{id}', 'StokistController@show')->name('stokists.show');
+	// Store
+	Route::get('/stores', 'StoreController@index')->name('stores.index');
+	Route::get('/stores/{id}', 'StoreController@show')->name('stores.show');
 
 });

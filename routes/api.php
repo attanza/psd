@@ -18,6 +18,8 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('market', 'MarketController@store')->name('market.store');
 	Route::put('market/{id}', 'MarketController@update')->name('market.update');
 	Route::put('market/{id}/location', 'MarketController@saveLocation')->name('market.location');
+	Route::get('market/for/combo', 'MarketController@getMarketForCombo')->name('market.for_combo');
+	Route::get('market/byArea/{areaId}', 'MarketController@getMarketByAreaId')->name('market.byArea');
 
 	// product
 	Route::post('product-list', 'ProductController@getProductList')->name('product.list');
@@ -29,6 +31,12 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('stokist', 'StokistController@store')->name('stokist.store');
 	Route::put('stokist/{id}', 'StokistController@update')->name('stokist.update');
 	Route::put('stokist/{id}/location', 'StokistController@saveLocation')->name('stokist.location');
+
+	// store
+	Route::post('store-list', 'StoreController@getstoreList')->name('store.list');
+	Route::post('store', 'StoreController@store')->name('store.store');
+	Route::put('store/{id}', 'StoreController@update')->name('store.update');
+	Route::put('store/{id}/location', 'StoreController@saveLocation')->name('store.location');
 	
 
 	// Media

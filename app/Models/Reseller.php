@@ -5,16 +5,21 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Storage;
 
-class Stokist extends Model
+class Reseller extends Model
 {
     protected $fillable = [
-        'code', 'name', 'address', 'owner', 'pic', 'phone1', 'phone2', 'email', 'photo', 'area_id',
-        'lat', 'lng'
+        'code', 'name', 'owner', 'pic', 'phone1', 'phone2', 'email', 'address',
+        'lat', 'lng', 'market_id', 'parent_id', 'is_active', 'reseller_type'
     ];
 
-    public function area()
+    public function parent()
     {
-        return $this->belongsTo('App\Models\Area');
+        return $this->belongsTo('App\Models\Reseller', 'parent_id');
+    }
+
+    public function market()
+    {
+        return $this->belongsTo('App\Models\Market');
     }
 
     public function medias()

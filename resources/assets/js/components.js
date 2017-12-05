@@ -23,3 +23,9 @@ Vue.component('stokist-init', require('./components/stokists/StokistInit.vue'));
 Vue.component('stokist-photo', require('./components/stokists/StokistPhoto.vue'));
 Vue.component('stokist-info', require('./components/stokists/StokistInfo.vue'));
 Vue.component('stokist-map', require('./components/stokists/StokistMap.vue'));
+// Store
+Vue.component('store-list', require('./components/stores/StoreList.vue'));
+Vue.component('store-init', require('./components/stores/StoreInit.vue'));
+Vue.component('store-photo', require('./components/stores/StorePhoto.vue'));
+Vue.component('store-info', require('./components/stores/StoreInfo.vue'));
+Vue.component('store-map', require('./components/stores/StoreMap.vue'));

@@ -13,6 +13,6 @@ class AreaSeed extends Seeder
     public function run()
     {
         Area::truncate();
-        factory(Area::class, 25)->create();
+        factory(Area::class, 4)->create();
     }
 }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Area;
 use App\Models\Stokist;
 
 class StokistSeed extends Seeder
@@ -13,9 +14,10 @@ class StokistSeed extends Seeder
     public function run()
     {
         Stokist::truncate();
-        for ($i=0; $i < 25; $i++) { 
+        $areas = Area::all();
+        foreach ($areas as $area) {
             factory(Stokist::class)->create([
-                'area_id' => rand(1,10)
+                'area_id' => $area->id
             ]);
         }
     }

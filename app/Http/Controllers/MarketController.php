@@ -81,4 +81,18 @@ class MarketController extends Controller
         $areas = Area::select('id', 'name')->orderBy('name')->get();
         return $areas;
     }
+
+    public function getMarketForCombo()
+    {
+        $markets = Market::select('id', 'name')->orderBy('name')->get();
+        return response()->json($markets, 200);
+    }
+
+    public function getMarketByAreaId($areaId)
+    {
+        $markets = Market::select('id', 'name')
+        ->where('area_id', $areaId)
+        ->orderBy('name')->get();
+        return response()->json($markets, 200);
+    }
 }

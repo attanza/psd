@@ -29,4 +29,9 @@ class Market extends Model
     {
         return $this->morphMany('App\Models\Media', 'mediable');
     }
+
+    public function resellers()
+    {
+        return $this->hasMany('App\Models\Reseller');
+    }
 }

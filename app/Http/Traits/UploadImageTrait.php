@@ -5,6 +5,7 @@ use Illuminate\Http\Request;
 use App\Http\Resources\Market\MarketR;
 use App\Http\Resources\Product\ProductR;
 use App\Http\Resources\Stokist\StokistR;
+use App\Http\Resources\Store\StoreR;
 use App\Models\Media;
 use Image;
 use Storage;
@@ -23,6 +24,9 @@ trait UploadImageTrait
             case 'stokist':
                 return 'App\Models\Stokist';
             break;
+            case 'store':
+                return 'App\Models\Reseller';
+            break;
 
             default:
                 return 'App\Models\Building';
@@ -36,15 +40,15 @@ trait UploadImageTrait
             case 'market':
                 return new MarketR($data);
             break;
-
             case 'product':
                 return new ProductR($data);
             break;
-
             case 'stokist':
                 return new StokistR($data);
             break;
-
+            case 'store':
+                return new StoreR($data);
+            break;
             default:
                 return 'MarketR';
                 break;
@@ -96,7 +100,9 @@ trait UploadImageTrait
 
     private function savePhotoAttribute($model, $id, $publicFolder, $filename)
     {
-        $models = ['App\Models\Market', 'App\User', 'App\Models\Stokist'];
+        $models = [
+            'App\Models\Market', 'App\User', 'App\Models\Stokist', 'App\Models\Reseller'
+        ];
         if (in_array($model, $models)) {
             $dataToUpdate = $model::find($id);
             if (count($dataToUpdate) == 0) {

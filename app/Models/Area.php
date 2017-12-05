@@ -12,4 +12,9 @@ class Area extends Model
     {
         return $this->hasMany('App\Models\Market');
     }
+
+    public function areas()
+    {
+        return $this->hasMany('App\Models\Area');
+    }
 }

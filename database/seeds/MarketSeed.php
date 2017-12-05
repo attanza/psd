@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\Models\Area;
 use App\Models\Market;
 
 class MarketSeed extends Seeder
@@ -13,9 +14,10 @@ class MarketSeed extends Seeder
     public function run()
     {
         Market::truncate();
-        for ($i=0; $i < 26; $i++) { 
-            factory(Market::class)->create([
-                'area_id' => rand(1,10)
+        $areas = Area::all();
+        foreach ($areas as $area) {
+            factory(Market::class, 2)->create([
+                'area_id' => $area->id
             ]);
         }
     }
