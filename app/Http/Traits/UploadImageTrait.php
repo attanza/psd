@@ -27,6 +27,9 @@ trait UploadImageTrait
             case 'store':
                 return 'App\Models\Reseller';
             break;
+            case 'outlet':
+                return 'App\Models\Reseller';
+            break;
 
             default:
                 return 'App\Models\Building';
@@ -47,6 +50,9 @@ trait UploadImageTrait
                 return new StokistR($data);
             break;
             case 'store':
+                return new StoreR($data);
+            break;
+            case 'outlet':
                 return new StoreR($data);
             break;
             default:

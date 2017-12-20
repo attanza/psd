@@ -23,5 +23,17 @@ export const stokistWebUrl = apiDomain + 'stokists/'
 export const storeListUrl = apiDomain + 'api/store-list'
 export const storeUrl = apiDomain + 'api/store'
 export const storeWebUrl = apiDomain + 'stores/'
+// Outlet
+export const outletListUrl = apiDomain + 'api/outlet-list'
+export const outletUrl = apiDomain + 'api/outlet'
+export const outletWebUrl = apiDomain + 'outlets/'
+export const storeComboUrl = apiDomain + 'api/store/for/combo'
+// Role
+export const roleListUrl = apiDomain + 'api/role-list'
+export const roleUrl = apiDomain + 'api/role'
 // Media
 export const mediaUploadUrl = apiDomain + 'api/media-upload'
+// User
+export const userListUrl = apiDomain + 'api/user-list'
+export const userUrl = apiDomain + 'api/user'
+export const userWebUrl = apiDomain + 'users/'

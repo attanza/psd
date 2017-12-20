@@ -18,7 +18,7 @@ return [
         'seller' => [
             'profile' => 'r,u'
         ],
-        'user' => [
+        'reviewer' => [
             'profile' => 'r,u'
         ],
     ],

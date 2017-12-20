@@ -29,3 +29,17 @@ Vue.component('store-init', require('./components/stores/StoreInit.vue'));
 Vue.component('store-photo', require('./components/stores/StorePhoto.vue'));
 Vue.component('store-info', require('./components/stores/StoreInfo.vue'));
 Vue.component('store-map', require('./components/stores/StoreMap.vue'));
+// Outlet
+Vue.component('outlet-list', require('./components/outlets/OutletList.vue'));
+Vue.component('outlet-init', require('./components/outlets/OutletInit.vue'));
+Vue.component('outlet-photo', require('./components/outlets/OutletPhoto.vue'));
+Vue.component('outlet-info', require('./components/outlets/OutletInfo.vue'));
+Vue.component('outlet-map', require('./components/outlets/OutletMap.vue'));
+// Role
+Vue.component('role-list', require('./components/roles/RoleList.vue'));
+Vue.component('role-form', require('./components/roles/RoleForm.vue'));
+// Users
+Vue.component('user-list', require('./components/users/UserList.vue'));
+// Vue.component('user-init', require('./components/users/UserInit.vue'));
+// Vue.component('user-photo', require('./components/users/UserPhoto.vue'));
+// Vue.component('user-info', require('./components/users/UserInfo.vue'));

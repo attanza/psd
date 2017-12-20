@@ -1,0 +1,199 @@
+<div>
+  <div class="modal"
+       id="outlet_form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button"
+                  class="close"
+                  data-dismiss="modal"
+                  aria-label="Close">
+            <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" :class="{'has-error': errors.has('area_id')}">
+            <label class="control-label"
+                   for="area_id">Area
+            </label>
+            <select name="area_id"
+                   v-model="area_id"
+                   type="text"
+                   v-validate="'required|integer'"
+                   data-vv-as="Area"
+                   class="form-control"
+                   @change="getMarkets">
+                     <option value="" selected disabled>Select Area</option>
+                     <option v-for="area in areas" :value="area.id">{{area.name}}</option>
+                   </select>
+            <span class="help-block"
+                  v-show="errors.has('area_id')">{{ errors.first('area_id') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('market_id')}">
+            <label class="control-label"
+                   for="market_id">Market
+            </label>
+            <select name="market_id"
+                   v-model="market_id"
+                   type="text"
+                   v-validate="'required|integer'"
+                   data-vv-as="Market"
+                   class="form-control"
+                   @change="getParents">
+                     <option value="" selected disabled>Select Market</option>
+                     <option v-for="market in markets" :value="market.id">{{market.name}}</option>
+                   </select>
+            <span class="help-block"
+                  v-show="errors.has('market_id')">{{ errors.first('market_id') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('parent_id')}">
+            <label class="control-label"
+                   for="parent_id">Store
+            </label>
+            <select name="parent_id"
+                   v-model="parent_id"
+                   type="text"
+                   v-validate="'required|integer'"
+                   data-vv-as="Store"
+                   class="form-control">
+                     <option value="" selected disabled>Select Store</option>
+                     <option v-for="parent in parents" :value="parent.id">{{parent.name}}</option>
+                   </select>
+            <span class="help-block"
+                  v-show="errors.has('parent_id')">{{ errors.first('parent_id') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('code')}">
+            <label class="control-label"
+                   for="code">Code
+            </label>
+            <input name="code"
+                   v-model="code"
+                   type="text"
+                   placeholder="outlet code"
+                   v-validate="'required|min:3|max:50'"
+                   data-vv-as="outlet code"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('code')">{{ errors.first('code') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('name')}">
+            <label class="control-label"
+                   for="name">Name
+            </label>
+            <input name="name"
+                   v-model="name"
+                   type="text"
+                   placeholder="outlet Name"
+                   v-validate="'required|min:3|max:50'"
+                   data-vv-as="outlet Name"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('name')">{{ errors.first('name') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('owner')}">
+            <label class="control-label"
+                   for="owner">Owner
+            </label>
+            <input name="owner"
+                   v-model="owner"
+                   type="text"
+                   placeholder="outlet owner"
+                   v-validate="'required|min:3|max:50'"
+                   data-vv-as="outlet owner"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('owner')">{{ errors.first('owner') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('pic')}">
+            <label class="control-label"
+                   for="pic">Person in Charge
+            </label>
+            <input name="pic"
+                   v-model="pic"
+                   type="text"
+                   placeholder="outlet PIC"
+                   v-validate="'required|min:3|max:50'"
+                   data-vv-as="outlet PIC"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('pic')">{{ errors.first('pic') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('phone1')}">
+            <label class="control-label"
+                   for="phone1">Phone Number
+            </label>
+            <input name="phone1"
+                   v-model="phone1"
+                   type="text"
+                   placeholder="Phone Number"
+                   v-validate="'required|max:30'"
+                   data-vv-as="Phone Number"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('phone1')">{{ errors.first('phone1') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('phone2')}">
+            <label class="control-label"
+                   for="phone2">Other Phone Number
+            </label>
+            <input name="phone2"
+                   v-model="phone2"
+                   type="text"
+                   placeholder="Other Phone Number"
+                   v-validate="'max:30'"
+                   data-vv-as="Other Phone Number"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('phone2')">{{ errors.first('phone2') }}</span>
+          </div>
+
+          <div class="form-group" :class="{'has-error': errors.has('email')}">
+            <label class="control-label"
+                   for="email">Email
+            </label>
+            <input name="email"
+                   v-model="email"
+                   type="text"
+                   placeholder="Email"
+                   v-validate="'required|email'"
+                   data-vv-as="Email"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('email')">{{ errors.first('email') }}</span>
+          </div>
+                    
+          <div class="form-group" :class="{'has-error': errors.has('address')}">
+            <label class="control-label"
+                   for="address">Address
+            </label>
+            <textarea name="address"
+                   v-model="address"
+                   placeholder="Address"
+                   v-validate="'max:200'"
+                   data-vv-as="address"
+                   class="form-control"></textarea>
+            <span class="help-block"
+                  v-show="errors.has('address')">{{ errors.first('address') }}</span>
+          </div>
+        </div> 
+        <div class="modal-footer">
+          <button type="button"
+                  class="btn btn-default pull-left"
+                  @click="handleClose">Close</button>
+          <button type="button"
+                  class="btn btn-danger" @click="submit">
+                    <i class="fa fa-floppy-o m-r-5"></i> Save
+                  </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

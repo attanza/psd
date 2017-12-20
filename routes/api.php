@@ -37,8 +37,22 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('store', 'StoreController@store')->name('store.store');
 	Route::put('store/{id}', 'StoreController@update')->name('store.update');
 	Route::put('store/{id}/location', 'StoreController@saveLocation')->name('store.location');
-	
+	Route::get('store/for/combo', 'StoreController@getParentStore')->name('store.for_combo');
+	Route::get('store/for/combo/{marketId}', 'StoreController@getParentByMarket')->name('store.by_market');
 
+	// outlet
+	Route::post('outlet-list', 'OutletController@getOutletList')->name('outlet.list');
+	Route::post('outlet', 'OutletController@store')->name('outlet.outlet');
+	Route::put('outlet/{id}', 'OutletController@update')->name('outlet.update');
+	Route::put('outlet/{id}/location', 'OutletController@saveLocation')->name('outlet.location');
+	// role
+	// Route::post('role-list', 'RoleController@getroleList')->name('role.list');
+	// Route::post('role', 'RoleController@store')->name('role.store');
+	// Route::put('role/{id}', 'RoleController@update')->name('role.update');
+	// User
+	Route::post('user-list', 'UserController@getuserList')->name('user.list');
+	Route::post('user', 'UserController@store')->name('user.user');
+	Route::put('user/{id}', 'UserController@update')->name('user.update');
 	// Media
 	Route::post('media-upload', 'MediaController@upload');
 

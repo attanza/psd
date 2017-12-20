@@ -4,7 +4,6 @@ use Illuminate\Database\Seeder;
 use App\Models\Market;
 use App\Models\Reseller;
 
-
 class StoreSeed extends Seeder
 {
     /**

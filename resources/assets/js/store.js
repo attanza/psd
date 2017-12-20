@@ -10,7 +10,10 @@ export const store = new Vuex.Store({
     currentMarket: {},
     currentProduct: {},
     currentStokist: {},
-    currentStore: {}
+    currentStore: {},
+    currentOutlet: {},
+    currentRole: {},
+    currentUser: {}
   },
 
   getters: {
@@ -27,11 +30,23 @@ export const store = new Vuex.Store({
     currentMarket(state, p) {
       state.currentMarket = p
     },
+    currentProduct(state, p) {
+      state.currentProduct = p
+    },
     currentStokist(state, p) {
       state.currentStokist = p
     },
     currentStore(state, p) {
       state.currentStore = p
+    },
+    currentOutlet(state, p) {
+      state.currentOutlet = p
+    },
+    currentRole(state, p) {
+      state.currentRole = p
+    },
+    currentUser(state, p) {
+      state.currentUser = p
     }
   }
 })

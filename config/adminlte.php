@@ -150,24 +150,33 @@ return [
             'active' => ['/stores', '/stores/*']
             
         ],
+        [
+            'text' => 'Outlet',
+            'url'  => '/outlets',
+            'icon' => 'shopping-cart',
+            'active' => ['/outlets', '/outlets/*']
+            
+        ],
+        [
+            'text' => 'Users',
+            'url'  => '/users',
+            'icon' => 'user',
+            'active' => ['/users', '/users/*']
+            
+        ],
         // [
-        //     'text'        => 'Pages',
-        //     'url'         => 'admin/pages',
-        //     'icon'        => 'file',
-        //     'label'       => 4,
-        //     'label_color' => 'success',
+        //     'text' => 'Roles & Permission',
+        //     'icon' => 'cog',
+        //     'submenu' => [
+        //         [
+        //             'text' => 'Roles',
+        //             'icon' => 'cog',
+        //             'url' => '/roles',
+        //             'active' => ['/roles', '/roles/*']
+        //         ]
+        //     ]
         // ],
-        // 'ACCOUNT SETTINGS',
-        // [
-        //     'text' => 'Profile',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'user',
-        // ],
-        // [
-        //     'text' => 'Change Password',
-        //     'url'  => 'admin/settings',
-        //     'icon' => 'lock',
-        // ],
+
         // [
         //     'text'    => 'Multilevel',
         //     'icon'    => 'share',

@@ -24,5 +24,14 @@ Route::group(['middleware' => 'auth'], function () {
 	// Store
 	Route::get('/stores', 'StoreController@index')->name('stores.index');
 	Route::get('/stores/{id}', 'StoreController@show')->name('stores.show');
+	// Outlet
+	Route::get('/outlets', 'OutletController@index')->name('outlets.index');
+	Route::get('/outlets/{id}', 'OutletController@show')->name('outlets.show');
+	// Role
+	// Route::get('/roles', 'RoleController@index')->name('roles.index');
+	// Route::get('/roles/{id}', 'RoleController@show')->name('roles.show');
+	// User
+	Route::get('/users', 'UserController@index')->name('users.index');
+	Route::get('/users/{id}', 'UserController@show')->name('users.show');
 
 });
