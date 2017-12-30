@@ -8,6 +8,7 @@ Route::group(['middleware' => 'guest'], function () {
 });
 Route::group(['middleware' => 'auth'], function () {
     Route::get('/', 'DashboardController@index')->name('dashboard.index');
+    Route::get('/home', 'DashboardController@index')->name('dashboard.index');
 
 	Route::get('/dashboard', 'DashboardController@index')->name('dashboard.index');
 	// Areas
