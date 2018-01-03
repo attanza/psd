@@ -41,13 +41,13 @@ class UserTest extends TestCase
     /**
      * @group users
      */
-    // public function test_user_can_update_profile()
-    // {
-    //      $user = User::find(2);
-    //      $this->actingAs($user, 'api')
-    //         ->json('put', '/api/profile', $this->postData())
-    //         ->assertStatus(200);
-    // }
+    public function test_user_can_update_users()
+    {
+         $user = User::find(2);
+         $this->actingAs($user, 'api')
+            ->json('put', '/api/user/'.$user->id, $this->postData())
+            ->assertStatus(200);
+    }
 
     /**
      * @group users
@@ -72,12 +72,12 @@ class UserTest extends TestCase
         });
     }
 
-    // private function postData()
-    // {
-    //     $faker = Factory::create();
-    //     return [
-    //         'name' => $faker->name,
-    //         'email' => $faker->safeEmail,
-    //     ];
-    // }
+    private function postData()
+    {
+        $faker = Factory::create();
+        return [
+            'name' => $faker->name,
+            'email' => $faker->safeEmail,
+        ];
+    }
 }

@@ -5,7 +5,7 @@
     <div class="box-tools pull-right">
       <button type="button"
               class="btn btn-box-tool"
-              @click="editProfile"><i class="fa fa-pencil"></i></button>
+              @click="editUser"><i class="fa fa-pencil"></i></button>
     </div>
   </div>
   <div class="box-body">
@@ -34,15 +34,20 @@
         </tr>
         <tr>
           <td colspan="2">
-            <button type="button" class="btn btn-block btn-danger btn-sm" @click="showDialog = true">Reset Password</button>
+            <button type="button"
+                    class="btn btn-block btn-danger btn-sm"
+                    @click="showDialog = true">Reset Password</button>
           </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <!-- <user-form></user-form> -->
+  <user-form :isEdit="isEdit"
+             @onClose="onClose"></user-form>
   <!-- <change-password></change-password> -->
-  <modal-dialog :showDialog="showDialog" @closeDialog="showDialog = false" @onConfirm="resetPassword"></modal-dialog>
+  <modal-dialog :showDialog="showDialog"
+                @closeDialog="showDialog = false"
+                @onConfirm="resetPassword"></modal-dialog>
 </div>
 
 </template>
@@ -50,26 +55,29 @@
 <script>
 import UserForm from './UserForm';
 import moment from 'moment';
-import {resetPasswordUrl} from '../../globalConfig'
-import catchJsonErrors from '../../mixins/catchJsonErrors.js'
+import { resetPasswordUrl } from '../../globalConfig';
+import catchJsonErrors from '../../mixins/catchJsonErrors.js';
 import ModalDialog from '../common/ModalDialog';
 
 export default {
   components: {
-    UserForm, ModalDialog
+    UserForm,
+    ModalDialog
   },
   data() {
     return {
-      showDialog: false
+      showDialog: false,
+      isEdit: false
     }
   },
   methods: {
-    editProfile() {
-      $('#profile_form').modal('show')
+    editUser() {
+      this.isEdit = true
+      $('#user_form').modal('show')
     },
     resetPassword() {
       this.showDialog = false
-      axios.get(resetPasswordUrl+this.user.id).then((resp) => {
+      axios.get(resetPasswordUrl + this.user.id).then((resp) => {
         console.log(resp)
         if (resp.status === 200) {
           this.throw_noty('success', resp.data.msg)
@@ -80,6 +88,10 @@ export default {
     },
     getRealtiveTime(t) {
       return moment(t).fromNow()
+    },
+    onClose() {
+      this.isEdit = false
+      $('#user_form').modal('hide')
     }
   },
   computed: {
@@ -87,7 +99,9 @@ export default {
       return this.$store.state.currentUser
     }
   },
-  mixins: [catchJsonErrors]
+  mixins: [
+    catchJsonErrors
+  ]
 
 }
 

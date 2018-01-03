@@ -34,6 +34,18 @@ class UserController extends Controller
         return new UserRCollection($users);
     }
 
+    public function update(Request $request, $id)
+    {
+        $request->validate([
+            'name' => 'required|max:150|unique:users,name,'.$id,
+            'email' => 'required|email|unique:users,email,'.$id,
+        ]);
+
+        $user = User::findOrFail($id);
+        $user->update($request->all());
+        return new UserR($user);
+    }
+
     public function show($id)
     {
         $user = User::findOrFail($id);

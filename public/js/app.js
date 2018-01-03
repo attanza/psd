@@ -5761,7 +5761,8 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
       axios.put(__WEBPACK_IMPORTED_MODULE_1__globalConfig_js__["B" /* userUrl */] + '/' + this.id, this.getData()).then(function (resp) {
         if (resp.status === 200) {
-          _this3.$emit('onEdit', resp.data.data);
+          _this3.$store.commit('currentUser', resp.data.data);
+          _this3.handleClose();
         }
       }).catch(function (error) {
         _this3.catchError(error.response);
@@ -5769,53 +5770,26 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getData: function getData() {
       return {
-        market_id: this.market_id,
-        parent_id: this.parent_id,
-        reseller_type: 'user',
-        code: this.code,
         name: this.name,
-        owner: this.owner,
-        pic: this.pic,
-        phone1: this.phone1,
-        phone2: this.phone2,
         email: this.email,
-        address: this.address,
-        lat: -6.2295712,
-        lng: 106.759478
+        is_active: this.is_active
       };
     },
     clear: function clear() {
       this.dialogTitle = 'Add user';
       this.id = '';
-      this.market_id = '';
-      this.parent_id = '';
-      this.code = '';
       this.name = '';
-      this.owner = '';
-      this.pic = '';
-      this.phone1 = '';
-      this.phone2 = '';
       this.email = '';
-      this.address = '';
+      this.is_active = '';
       this.$validator.reset();
     },
     fillForm: function fillForm() {
       if (this.user) {
         this.modalTitle = 'Edit user';
         this.id = this.user.id;
-        this.market_id = this.user.market_id;
-        this.area_id = this.user.area_id;
-        this.parent_id = this.user.parent_id;
-        this.code = this.user.code;
         this.name = this.user.name;
-        this.owner = this.user.owner;
-        this.pic = this.user.pic;
-        this.phone1 = this.user.phone1;
-        this.phone2 = this.user.phone2;
         this.email = this.user.email;
-        this.address = this.user.address;
-        this.getMarkets();
-        this.getParents();
+        this.is_active = this.user.is_active;
       }
     },
     handleClose: function handleClose() {
@@ -5825,7 +5799,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
   },
   computed: {
     user: function user() {
-      return this.$store.state.currentuser;
+      return this.$store.state.currentUser;
     }
   },
   mixins: [__WEBPACK_IMPORTED_MODULE_0__mixins_catchJsonErrors_js__["a" /* default */]]
@@ -5895,6 +5869,11 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+//
 
 
 
@@ -5904,17 +5883,20 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   components: {
-    UserForm: __WEBPACK_IMPORTED_MODULE_0__UserForm___default.a, ModalDialog: __WEBPACK_IMPORTED_MODULE_4__common_ModalDialog___default.a
+    UserForm: __WEBPACK_IMPORTED_MODULE_0__UserForm___default.a,
+    ModalDialog: __WEBPACK_IMPORTED_MODULE_4__common_ModalDialog___default.a
   },
   data: function data() {
     return {
-      showDialog: false
+      showDialog: false,
+      isEdit: false
     };
   },
 
   methods: {
-    editProfile: function editProfile() {
-      $('#profile_form').modal('show');
+    editUser: function editUser() {
+      this.isEdit = true;
+      $('#user_form').modal('show');
     },
     resetPassword: function resetPassword() {
       var _this = this;
@@ -5931,6 +5913,10 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
     },
     getRealtiveTime: function getRealtiveTime(t) {
       return __WEBPACK_IMPORTED_MODULE_1_moment___default()(t).fromNow();
+    },
+    onClose: function onClose() {
+      this.isEdit = false;
+      $('#user_form').modal('hide');
     }
   },
   computed: {
@@ -62342,7 +62328,7 @@ var render = function() {
             {
               staticClass: "btn btn-box-tool",
               attrs: { type: "button" },
-              on: { click: _vm.editProfile }
+              on: { click: _vm.editUser }
             },
             [_c("i", { staticClass: "fa fa-pencil" })]
           )
@@ -62406,6 +62392,11 @@ var render = function() {
           ])
         ])
       ]),
+      _vm._v(" "),
+      _c("user-form", {
+        attrs: { isEdit: _vm.isEdit },
+        on: { onClose: _vm.onClose }
+      }),
       _vm._v(" "),
       _c("modal-dialog", {
         attrs: { showDialog: _vm.showDialog },
@@ -63330,7 +63321,48 @@ var render = function() {
               ]
             ),
             _vm._v(" "),
-            _vm._m(1, false, false)
+            _c("div", { staticClass: "checkbox" }, [
+              _c("label", [
+                _c("input", {
+                  directives: [
+                    {
+                      name: "model",
+                      rawName: "v-model",
+                      value: _vm.is_active,
+                      expression: "is_active"
+                    }
+                  ],
+                  attrs: { type: "checkbox" },
+                  domProps: {
+                    checked: Array.isArray(_vm.is_active)
+                      ? _vm._i(_vm.is_active, null) > -1
+                      : _vm.is_active
+                  },
+                  on: {
+                    change: function($event) {
+                      var $$a = _vm.is_active,
+                        $$el = $event.target,
+                        $$c = $$el.checked ? true : false
+                      if (Array.isArray($$a)) {
+                        var $$v = null,
+                          $$i = _vm._i($$a, $$v)
+                        if ($$el.checked) {
+                          $$i < 0 && (_vm.is_active = $$a.concat([$$v]))
+                        } else {
+                          $$i > -1 &&
+                            (_vm.is_active = $$a
+                              .slice(0, $$i)
+                              .concat($$a.slice($$i + 1)))
+                        }
+                      } else {
+                        _vm.is_active = $$c
+                      }
+                    }
+                  }
+                }),
+                _vm._v(" Active\n            ")
+              ])
+            ])
           ]),
           _vm._v(" "),
           _c("div", { staticClass: "modal-footer" }, [
@@ -63379,17 +63411,6 @@ var staticRenderFns = [
       },
       [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "checkbox" }, [
-      _c("label", [
-        _c("input", { attrs: { type: "checkbox" } }),
-        _vm._v(" Check me out\n            ")
-      ])
-    ])
   }
 ]
 render._withStripped = true
