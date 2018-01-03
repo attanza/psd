@@ -41,4 +41,14 @@ class User extends Authenticatable
             return asset(Storage::url($value));
         }
     }
+
+    public function getRole()
+    {
+        return $this->roles()->first()->name;
+    }
+
+    public function getRoleName()
+    {
+        return $this->roles()->first()->display_name;
+    }
 }

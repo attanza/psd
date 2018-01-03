@@ -64,6 +64,22 @@ class ProfileTest extends TestCase
             ->assertStatus(200);
     }
 
+    /**
+     * @group profile
+     */
+    public function test_user_can_change_password()
+    {
+         $user = User::find(2);
+         $postData = [
+            'old_password' => 'password',
+            'password' => 'asdasd',
+            'password_confirmation' => 'asdasd'
+         ];
+         $this->actingAs($user, 'api')
+            ->json('post', '/api/profile/change-password', $postData)
+            ->assertStatus(200);
+    }
+
     private function postData()
     {
         $faker = Factory::create();

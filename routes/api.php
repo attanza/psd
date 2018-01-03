@@ -57,5 +57,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('media-upload', 'MediaController@upload');
 	// Profile
 	Route::put('profile', 'ProfileController@update');
+	Route::post('profile/change-password', 'ProfileController@changePassword');
+
 
 });

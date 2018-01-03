@@ -29,3 +29,9 @@
   font-size: 14px;
   text-align: center;
 }
+.user-header{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use App\Http\Resources\User\UserR;
+use Illuminate\Support\Facades\Hash;
 
 class ProfileController extends Controller
 {
@@ -22,6 +23,28 @@ class ProfileController extends Controller
         ]);
         $user = Auth::user();
         $user->update($request->all());
+        return new UserR($user);
+    }
+
+    public function changePassword(Request $request)
+    {
+        $request->validate([
+            'old_password' => 'required|min:6',
+            'password' => 'required|min:6|confirmed:password_confirmation',
+            'password_confirmation' => 'required|min:6',
+
+        ]);
+        $user = Auth::user();
+        if (!Hash::check($request->old_password, $user->password)) {
+            return response()->json([
+                'msg' => 'Old Password doesnt Match'
+            ], 400);
+        }
+
+        $user->update([
+            'password' => bcrypt($request->password)
+        ]);
+
         return new UserR($user);
     }
 }

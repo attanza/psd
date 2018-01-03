@@ -1,5 +1,5 @@
 
-<template src="./changePassword_form.html"></template>
+<template src="./changePassword.html"></template>
 
 <script>
 import catchJsonErrors from '../../mixins/catchJsonErrors.js';
@@ -14,7 +14,12 @@ export default {
   },
   methods: {
     handleClose() {
-      $('#changePassword_form').modal('hide')
+      this.old_password = ''
+      this.password = ''
+      this.password_confirmation = ''
+      $('#changePassword').modal('hide')
+      this.$validator.reset()
+
     },
     submit() {
       this.$validator.validateAll().then((result) => {
@@ -25,10 +30,10 @@ export default {
       })
     },
     submitChangePassword() {
-      axios.post(profileUrl, this.getData()).then((resp) => {
+      axios.post(profileUrl + '/change-password', this.getData()).then((resp) => {
         if (resp.status === 200) {
-          this.$store.commit('currentUser', resp.data.data)
           this.handleClose()
+          this.throw_noty('success', 'Password updated')
         }
       }).catch((error) => {
         this.catchError(error.response)

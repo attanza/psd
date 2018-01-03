@@ -19,19 +19,27 @@
           <td>Email</td>
           <td>{{user.email}}</td>
         </tr>
+        <tr>
+          <td colspan="2">
+            <button type="button" class="btn btn-block btn-warning btn-sm" @click="handleChangePassword">Change Password</button>
+          </td>
+        </tr>
       </tbody>
     </table>
   </div>
   <profile-form></profile-form>
+  <change-password></change-password>
 </div>
 
 </template>
 
 <script>
 import ProfileForm from './ProfileForm';
+import ChangePassword from './ChangePassword';
+
 export default {
   components: {
-    // MarketForm
+    ProfileForm, ChangePassword
   },
   data() {
     return {
@@ -48,6 +56,10 @@ export default {
     updateMarket (market) {
       this.$store.commit('currentMarket', market)
       this.onClose()
+    },
+    handleChangePassword() {
+      $('#changePassword').modal('show')
+
     }
   },
   computed: {

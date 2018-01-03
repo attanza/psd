@@ -54,10 +54,9 @@
                       <li class="user-header">
                         {{-- <img src="{{Auth::user()->photo}}" class="img-circle" alt="User Image"> --}}
                         <profile-picture></profile-picture>
-
                         <p>
                           {{Auth::user()->name}}
-                          {{-- <small>{{Auth::user()->getRole()}}</small> --}}
+                          <small>{{Auth::user()->getRoleName()}}</small>
                         </p>
                       </li>
                       <!-- Menu Footer-->
