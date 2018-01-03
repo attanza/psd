@@ -25,7 +25,7 @@ class PsdSeed extends Seeder
         Market::truncate();
         Stokist::truncate();
 
-        $areas = config('psd_seeder.areas');
+        $areas = $this->areas();
 
         foreach ($areas as $area) {
           $name = $area['name'];
@@ -54,7 +54,7 @@ class PsdSeed extends Seeder
     {
     	Product::truncate();
 
-        $products = config('psd_seeder.products');
+        $products = $this->products();
         foreach ($products as $product) {
         	factory(Product::class)->create([
         		'name' => $product,
@@ -62,5 +62,40 @@ class PsdSeed extends Seeder
         		'price' => rand(10000,15000)
         	]);
         }
+    }
+
+    private function areas()
+    {
+      return [
+        [
+          'name' => 'Serang, Banten',
+          'markets' => ['Pasar Merak', 'Pasar Kranggot', 'Pasar Rangkas Bitung'],
+          'stokists' => ['SPS']
+        ],
+        [
+          'name' => 'Tangerang',
+          'markets' => ['Pasar Cikupa', 'Pasar Malabar', 'Pasar Anyar'],
+          'stokists' => ['Tri Putra']
+        ],
+        [
+          'name' => 'Jakarta Barat',
+          'markets' => ['Pasar Kropo', 'Pasar Cengkareng', 'Pasar Jembatan Dua'],
+          'stokists' => ['UGS Daan Mogot']
+        ],
+        [
+          'name' => 'Jakarta Selatan',
+          'markets' => ['Pasar Minggu', 'Pasar Kebayoran Lama'],
+          'stokists' => ['UGS Lenteng Agung']
+        ],
+        [
+          'name' => 'Cikampek',
+          'markets' => ['Pasar PEMDA'],
+          'stokists' => ['RPS']
+        ]
+      ];
+    }
+
+    private function products() {
+      return ['Oyster Sauce', 'Chili Sauce', 'Soy Sauce'];
     }
 }
