@@ -55,5 +55,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::put('user/{id}', 'UserController@update')->name('user.update');
 	// Media
 	Route::post('media-upload', 'MediaController@upload');
+	// Profile
+	Route::put('profile', 'ProfileController@update');
 
 });

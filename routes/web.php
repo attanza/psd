@@ -35,4 +35,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('/users', 'UserController@index')->name('users.index');
 	Route::get('/users/{id}', 'UserController@show')->name('users.show');
 
+	Route::get('profile', 'ProfileController@index')->name('profile.index');
+
 });

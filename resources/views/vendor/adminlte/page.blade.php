@@ -41,17 +41,19 @@
               </a>
               @endif
               <div class="navbar-custom-menu">
-                {{-- <profile-init :user="{{Auth::user()}}"></profile-init> --}}
+                <profile-init :user="{{Auth::user()}}"></profile-init>
                 <ul class="nav navbar-nav">
                   <li class="dropdown user user-menu">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                      <img src="{{Auth::user()->avatar}}" class="user-image" alt="{{Auth::user()->name}}">
+                      {{-- <img src="{{Auth::user()->photo}}" class="user-image" alt="{{Auth::user()->name}}"> --}}
+                      <profile-picture></profile-picture>
                       <span class="hidden-xs">{{Auth::user()->name}}</span>
                     </a>
                     <ul class="dropdown-menu">
                       <!-- User image -->
                       <li class="user-header">
-                        <img src="{{Auth::user()->avatar}}" class="img-circle" alt="User Image">
+                        {{-- <img src="{{Auth::user()->photo}}" class="img-circle" alt="User Image"> --}}
+                        <profile-picture></profile-picture>
 
                         <p>
                           {{Auth::user()->name}}

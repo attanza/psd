@@ -6,6 +6,7 @@ use App\Http\Resources\Market\MarketR;
 use App\Http\Resources\Product\ProductR;
 use App\Http\Resources\Stokist\StokistR;
 use App\Http\Resources\Store\StoreR;
+use App\Http\Resources\User\UserR;
 use App\Models\Media;
 use Image;
 use Storage;
@@ -29,6 +30,9 @@ trait UploadImageTrait
             break;
             case 'outlet':
                 return 'App\Models\Reseller';
+            break;
+            case 'user':
+                return 'App\User';
             break;
 
             default:
@@ -54,6 +58,9 @@ trait UploadImageTrait
             break;
             case 'outlet':
                 return new StoreR($data);
+            break;
+            case 'user':
+                return new UserR($data);
             break;
             default:
                 return 'MarketR';

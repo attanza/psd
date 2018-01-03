@@ -17,4 +17,9 @@ class Area extends Model
     {
         return $this->hasMany('App\Models\Area');
     }
+
+    public function stokists()
+    {
+        return $this->hasMany('App\Models\Stokist');
+    }
 }

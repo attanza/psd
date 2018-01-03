@@ -37,3 +37,5 @@ export const mediaUploadUrl = apiDomain + 'api/media-upload'
 export const userListUrl = apiDomain + 'api/user-list'
 export const userUrl = apiDomain + 'api/user'
 export const userWebUrl = apiDomain + 'users/'
+// Profile
+export const profileUrl = apiDomain + 'api/profile'

@@ -16,7 +16,8 @@ class DatabaseSeeder extends Seeder
         // $this->call(MarketSeed::class);
         // $this->call(ProductSeed::class);
         // $this->call(StokistSeed::class);
-        // $this->call(StoreSeed::class);
-        // $this->call(OutletSeed::class);
+        $this->call(PsdSeed::class);
+        $this->call(StoreSeed::class);
+        $this->call(OutletSeed::class);
     }
 }

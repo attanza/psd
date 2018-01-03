@@ -20,7 +20,7 @@ class StoreR extends Resource
         $store['area'] = $this->market->area->name;
         if ($this->parent_id != 0) {
             $store['parent_id'] = $this->parent_id;
-            $store['parent'] = $this->parent->name;            
+            $store['parent'] = $this->parent->name;
         }
         return $store;
     }

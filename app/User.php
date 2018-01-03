@@ -6,6 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Laratrust\Traits\LaratrustUserTrait;
 use Laravel\Passport\HasApiTokens;
+use Storage;
 
 class User extends Authenticatable
 {
@@ -30,7 +31,7 @@ class User extends Authenticatable
         'password', 'remember_token',
     ];
 
-    public function getAvatarAttribute($value)
+    public function getPhotoAttribute($value)
     {
         if ($value == null) {
             return asset('images/male.png');
