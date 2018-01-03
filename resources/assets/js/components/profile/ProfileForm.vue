@@ -35,7 +35,7 @@ export default {
     submitProfile() {
       axios.put(profileUrl, this.getData()).then((resp) => {
         if (resp.status === 200) {
-          this.$store.commit('currentUser', resp.data.data)
+          this.$store.commit('user', resp.data.data)
           this.handleClose()
         }
       }).catch((error) => {
@@ -52,7 +52,7 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.currentUser
+      return this.$store.state.user
     }
   },
   mixins: [catchJsonErrors]

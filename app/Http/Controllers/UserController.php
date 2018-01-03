@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\User;
 use App\Http\Resources\User\UserR;
 use App\Http\Resources\User\UserRCollection;
+use App\Mail\ResetPasswordMail;
+use Mail;
 
 class UserController extends Controller
 {
@@ -30,5 +32,23 @@ class UserController extends Controller
             $users = User::orderBy('name')->paginate($request->paginate);
         }
         return new UserRCollection($users);
+    }
+
+    public function show($id)
+    {
+        $user = User::findOrFail($id);
+        return view('users.show')->withUser($user);
+    }
+
+    public function resetPassword($id)
+    {
+        $user = User::findOrFail($id);
+        $hash = str_random(6);
+        $user->update([
+            'password' => bcrypt($hash)
+        ]);
+        Mail::to($user->email)->send(new ResetPasswordMail($user, $hash));
+        $msg = 'A temporary password has been sent to '. $user->email;
+        return response()->json(['msg' => $msg], 200);
     }
 }

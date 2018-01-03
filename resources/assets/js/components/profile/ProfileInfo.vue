@@ -49,22 +49,13 @@ export default {
     editProfile() {
       $('#profile_form').modal('show')
     },
-    onClose () {
-      this.isEdit = false
-      $('#market_form').modal('hide')
-    },
-    updateMarket (market) {
-      this.$store.commit('currentMarket', market)
-      this.onClose()
-    },
     handleChangePassword() {
       $('#changePassword').modal('show')
-
     }
   },
   computed: {
     user() {
-      return this.$store.state.currentUser
+      return this.$store.state.user
     }
   }
 }

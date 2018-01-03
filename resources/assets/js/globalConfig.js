@@ -37,5 +37,7 @@ export const mediaUploadUrl = apiDomain + 'api/media-upload'
 export const userListUrl = apiDomain + 'api/user-list'
 export const userUrl = apiDomain + 'api/user'
 export const userWebUrl = apiDomain + 'users/'
+export const resetPasswordUrl = apiDomain + 'api/reset-password/'
+
 // Profile
 export const profileUrl = apiDomain + 'api/profile'

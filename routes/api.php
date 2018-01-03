@@ -53,6 +53,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 	Route::post('user-list', 'UserController@getuserList')->name('user.list');
 	Route::post('user', 'UserController@store')->name('user.user');
 	Route::put('user/{id}', 'UserController@update')->name('user.update');
+	Route::get('reset-password/{id}', 'UserController@resetPassword');
 	// Media
 	Route::post('media-upload', 'MediaController@upload');
 	// Profile

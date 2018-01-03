@@ -5,7 +5,7 @@ export default {
     'user'
   ],
   created() {
-    this.$store.commit('currentUser', this.user)
+    this.$store.commit('user', this.user)
   }
 }
 

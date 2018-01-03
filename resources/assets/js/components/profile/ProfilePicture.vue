@@ -5,7 +5,7 @@
 	export default {
 		computed: {
 	    user() {
-	      return this.$store.state.currentUser
+	      return this.$store.state.user
 	    }
 	  }
 	}

@@ -40,9 +40,10 @@ Vue.component('role-list', require('./components/roles/RoleList.vue'));
 Vue.component('role-form', require('./components/roles/RoleForm.vue'));
 // Users
 Vue.component('user-list', require('./components/users/UserList.vue'));
-// Vue.component('user-init', require('./components/users/UserInit.vue'));
-// Vue.component('user-photo', require('./components/users/UserPhoto.vue'));
-// Vue.component('user-info', require('./components/users/UserInfo.vue'));
+Vue.component('user-init', require('./components/users/UserInit.vue'));
+Vue.component('user-photo', require('./components/users/UserPhoto.vue'));
+Vue.component('user-info', require('./components/users/UserInfo.vue'));
+// Profile
 Vue.component('profile-init', require('./components/profile/ProfileInit.vue'));
 Vue.component('profile-photo', require('./components/profile/ProfilePhoto.vue'));
 Vue.component('profile-info', require('./components/profile/ProfileInfo.vue'));

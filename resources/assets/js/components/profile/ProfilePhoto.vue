@@ -76,7 +76,7 @@ export default {
   },
   methods: {
     showSuccess(file, response) {
-      this.$store.commit('currentUser', response.data)
+      this.$store.commit('user', response.data)
       let vm = this
       vm.$refs.myVueDropzone.removeFile(file)
       $('#dropzone_uploader').modal('hide')
@@ -91,7 +91,7 @@ export default {
   },
   computed: {
     user() {
-      return this.$store.state.currentUser
+      return this.$store.state.user
     }
   }
 }

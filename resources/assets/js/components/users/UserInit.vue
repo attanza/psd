@@ -2,10 +2,10 @@
 <script>
 export default {
   props: [
-    'outlet'
+    'user'
   ],
   created() {
-    this.$store.commit('currentOutlet', this.outlet)
+    this.$store.commit('currentUser', this.user)
   }
 }
 

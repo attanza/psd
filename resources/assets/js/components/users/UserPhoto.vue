@@ -1,46 +1,34 @@
 <template>
-<div id="outlet_photo">
+<div id="user_photo">
   <div class="box box-widget">
     <div class="box-body">
-    <div class="thumbnail">
-      <img :src="outlet.photo">
-    </div>
-    </div>
-    <div class="box-footer">
-      <div class="row">
-        <div class="col-md-12">
-          <button class="btn btn-danger pull-right"
-                  @click="showUploader">
-            <i class="fa fa-camera"></i>
-          </button>
-        </div>
+      <div class="thumbnail">
+        <img :src="user.photo">
       </div>
     </div>
   </div>
-  
-<div class="modal"
+  <div class="modal"
        id="dropzone_uploader">
-  <div class="modal-dialog">
-    <div class="modal-content">
-      <div class="modal-body">
-        <div class="row">
-          <div class="col-sm-12">
-            <dropzone id="myVueDropzone"
-                      :url="media.url"
-                      v-on:vdropzone-success="showSuccess"
-                      :maxFileSizeInMB="media.maxFile"
-                      :headers="media.headers"
-                      v-on:vdropzone-sending="sending"
-                      :use-font-awesome="true"
-                      ref="myVueDropzone">
-            </dropzone>
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-body">
+          <div class="row">
+            <div class="col-sm-12">
+              <dropzone id="myVueDropzone"
+                        :url="media.url"
+                        v-on:vdropzone-success="showSuccess"
+                        :maxFileSizeInMB="media.maxFile"
+                        :headers="media.headers"
+                        v-on:vdropzone-sending="sending"
+                        :use-font-awesome="true"
+                        ref="myVueDropzone">
+              </dropzone>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-
 </div>
 
 </template>
@@ -54,7 +42,7 @@ export default {
   },
   data() {
     return {
-      outlet_id: '',
+      user_id: '',
       media: {
         url: '',
         headers: null,
@@ -70,35 +58,35 @@ export default {
     }
   },
   mounted() {
-    if (this.outlet) {
-      this.outlet_id = this.outlet.id
+    if (this.user) {
+      this.user_id = this.user.id
     }
   },
   methods: {
     showSuccess(file, response) {
-      this.$store.commit('currentOutlet', response.data)
+      this.$store.commit('currentUser', response.data)
       let vm = this
       vm.$refs.myVueDropzone.removeFile(file)
       $('#dropzone_uploader').modal('hide')
     },
     sending(file, xhr, formData) {
-      formData.append('model', 'outlet')
-      formData.append('id', this.outlet_id)
+      formData.append('model', 'user')
+      formData.append('id', this.user_id)
     },
-    showUploader () {
+    showUploader() {
       $('#dropzone_uploader').modal('show')
     }
   },
   computed: {
-    outlet() {
-      return this.$store.state.currentOutlet
+    user() {
+      return this.$store.state.currentUser
     }
   }
 }
 
 </script>
 
-<style type="text/css" scoped>
+<style type="text/css" scoped="">
 .image-wrapper {
   min-height: 40vh;
   max-height: 80vh;

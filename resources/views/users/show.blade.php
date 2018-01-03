@@ -1,28 +1,24 @@
 @extends('adminlte::page')
-@section('title', 'PSD ~ Outlet')
+@section('title', $user->name)
 @section('content_header')
-<h2>{{$outlet['name']}}</h2>
+<h2>{{$user->name}}</h2>
 @stop
 @section('breadcrumb')
 <ol class="breadcrumb">
   <li><a href="{{url('/home')}}"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-  <li><a href="{{url('/outlets')}}"><i class="fa fa-shopping-cart"></i> Outlet List</a></li>
-  <li class="active">{{$outlet['name']}}</li>
+  <li><a href="{{url('/users')}}"><i class="fa fa-user"></i> User List</a></li>
+
+  <li class="active">{{$user->name}}'s Profile</li>
 </ol>
 @stop
 @section('content')
-<outlet-init :outlet="{{$outlet}}"></outlet-init>
+<user-init :user="{{$user}}"></user-init>
 <div class="row">
   <div class="col-md-6">
-    <outlet-photo></outlet-photo>
+    <user-photo></user-photo>
   </div>
   <div class="col-md-6">
-    <outlet-info></outlet-info>
-  </div>
-</div>
-<div class="row">
-  <div class="col-md-12">
-    <outlet-map></outlet-map>
+    <user-info></user-info>
   </div>
 </div>
 @stop

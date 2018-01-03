@@ -1,100 +1,94 @@
 <template>
 <div class="box box-danger box-solid">
   <div class="box-header with-border">
-    <h3 class="box-title">Outlet Info</h3>
+    <h3 class="box-title">Profile Info</h3>
     <div class="box-tools pull-right">
       <button type="button"
               class="btn btn-box-tool"
-              @click="editoutlet"><i class="fa fa-pencil"></i></button>
+              @click="editProfile"><i class="fa fa-pencil"></i></button>
     </div>
   </div>
   <div class="box-body">
     <table class="table">
       <tbody>
         <tr>
-          <th width="30%">Area</th>
-          <td width="70%">{{outlet.area}}</td>
+          <td>Name</td>
+          <td>{{user.name}}</td>
         </tr>
         <tr>
-          <th>Market</th>
-          <td>{{outlet.market}}</td>
+          <td>Email</td>
+          <td>{{user.email}}</td>
         </tr>
         <tr>
-          <th>Store</th>
-          <td>{{outlet.parent}}</td>
+          <td>Active Status</td>
+          <td>
+            <span v-if="user.is_active"><i class="fa fa-check"></i></span>
+            <span v-else><i class="fa fa-times"></i></span>
+          </td>
         </tr>
         <tr>
-          <th>Code</th>
-          <td>{{outlet.code}}</td>
+          <td>Last Login</td>
+          <td>
+            <span v-if="user.last_login !== null">{{getRealtiveTime(user.last_login)}}</span>
+          </td>
         </tr>
         <tr>
-          <th>Name</th>
-          <td>{{outlet.name}}</td>
-        </tr>
-        <tr>
-          <th>Owner</th>
-          <td>{{outlet.owner}}</td>
-        </tr>
-        <tr>
-          <th>Person in Charge</th>
-          <td>{{outlet.pic}}</td>
-        </tr>
-        <tr>
-          <th>Phone</th>
-          <td>{{outlet.phone1}}</td>
-        </tr>
-        <tr>
-          <th>Other Phone</th>
-          <td>{{outlet.phone2}}</td>
-        </tr>
-        <tr>
-          <th>Email</th>
-          <td>{{outlet.email}}</td>
-        </tr>
-        <tr>
-          <th>Address</th>
-          <td>{{outlet.address}}</td>
+          <td colspan="2">
+            <button type="button" class="btn btn-block btn-danger btn-sm" @click="showDialog = true">Reset Password</button>
+          </td>
         </tr>
       </tbody>
     </table>
   </div>
-  <outlet-form :isEdit="isEdit"
-                 @onClose="onClose" @onEdit="updateoutlet"></outlet-form>
+  <!-- <user-form></user-form> -->
+  <!-- <change-password></change-password> -->
+  <modal-dialog :showDialog="showDialog" @closeDialog="showDialog = false" @onConfirm="resetPassword"></modal-dialog>
 </div>
 
 </template>
 
 <script>
-import OutletForm from './OutletForm';
+import UserForm from './UserForm';
+import moment from 'moment';
+import {resetPasswordUrl} from '../../globalConfig'
+import catchJsonErrors from '../../mixins/catchJsonErrors.js'
+import ModalDialog from '../common/ModalDialog';
+
 export default {
   components: {
-    OutletForm
+    UserForm, ModalDialog
   },
   data() {
     return {
-      isEdit: false
+      showDialog: false
     }
   },
-  props: ['areas'],
   methods: {
-    editoutlet() {
-      this.isEdit = true
-      $('#outlet_form').modal('show')
+    editProfile() {
+      $('#profile_form').modal('show')
     },
-    onClose () {
-      this.isEdit = false
-      $('#outlet_form').modal('hide')
+    resetPassword() {
+      this.showDialog = false
+      axios.get(resetPasswordUrl+this.user.id).then((resp) => {
+        console.log(resp)
+        if (resp.status === 200) {
+          this.throw_noty('success', resp.data.msg)
+        }
+      }).catch((error) => {
+        this.catchError(error.response)
+      })
     },
-    updateoutlet (outlet) {
-      this.$store.commit('currentOutlet', outlet)
-      this.onClose()
+    getRealtiveTime(t) {
+      return moment(t).fromNow()
     }
   },
   computed: {
-    outlet() {
-      return this.$store.state.currentOutlet
+    user() {
+      return this.$store.state.currentUser
     }
-  }
+  },
+  mixins: [catchJsonErrors]
+
 }
 
 </script>

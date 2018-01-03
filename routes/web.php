@@ -38,3 +38,10 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('profile', 'ProfileController@index')->name('profile.index');
 
 });
+
+Route::get('/mailable', function () {
+    $user = App\User::find(2);
+    $hash = str_random(6);
+
+    return new App\Mail\ResetPasswordMail($user, $hash);
+});
