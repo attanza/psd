@@ -37,11 +37,14 @@ Route::group(['middleware' => 'auth'], function () {
 
 	Route::get('profile', 'ProfileController@index')->name('profile.index');
 
+	// Sell Target
+	Route::get('sell-targets', 'SellTargetController@index')->name('sell-targets.index');
+
 });
 
-Route::get('/mailable', function () {
-    $user = App\User::find(2);
-    $hash = str_random(6);
+// Route::get('/mailable', function () {
+//     $user = App\User::find(2);
+//     $hash = str_random(6);
 
-    return new App\Mail\ResetPasswordMail($user, $hash);
-});
+//     return new App\Mail\ResetPasswordMail($user, $hash);
+// });

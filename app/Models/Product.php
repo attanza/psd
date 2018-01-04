@@ -12,4 +12,9 @@ class Product extends Model
     {
         return $this->morphMany('App\Models\Media', 'mediable');
     }
+
+    public function targets()
+    {
+        return $this->hasMany('App\Models\SellTarget');
+    }
 }

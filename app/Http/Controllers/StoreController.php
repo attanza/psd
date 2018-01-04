@@ -81,14 +81,19 @@ class StoreController extends Controller
     public function getParentStore()
     {
         $stores = Reseller::select('id', 'name')
-        ->where('parent_id', 0)->get();
+        ->where('parent_id', 0)
+        ->orderBy('name')
+        ->get();
         return response()->json($stores, 200);
     }
 
     public function getParentByMarket($marketId)
     {
         $stores = Reseller::select('id', 'name')
-        ->where('parent_id', 0)->where('market_id', $marketId)->get();
+        ->where('parent_id', 0)
+        ->where('market_id', $marketId)
+        ->orderBy('name')
+        ->get();
         return response()->json($stores, 200);
     }
 }

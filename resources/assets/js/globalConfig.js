@@ -38,6 +38,9 @@ export const userListUrl = apiDomain + 'api/user-list'
 export const userUrl = apiDomain + 'api/user'
 export const userWebUrl = apiDomain + 'users/'
 export const resetPasswordUrl = apiDomain + 'api/reset-password/'
-
 // Profile
 export const profileUrl = apiDomain + 'api/profile'
+// Sell Target
+export const sellTargetListUrl = apiDomain + 'api/sell-target-list'
+export const sellTargetUrl = apiDomain + 'api/sell-target'
+export const sellTargetWebUrl = apiDomain + 'sell-targets/'

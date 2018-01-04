@@ -5,6 +5,8 @@ use App\Models\Area;
 use App\Models\Market;
 use App\Models\Stokist;
 use App\Models\Product;
+use App\Models\SellTarget;
+use Carbon\Carbon;
 
 class PsdSeed extends Seeder
 {
@@ -17,6 +19,7 @@ class PsdSeed extends Seeder
     {
         $this->areaSeed();
         $this->productSeed();
+        $this->targetSeed();
     }
 
     private function areaSeed()
@@ -62,6 +65,35 @@ class PsdSeed extends Seeder
         		'price' => rand(10000,15000)
         	]);
         }
+    }
+
+    private function targetSeed()
+    {
+      SellTarget::truncate();
+
+      $products = Product::all();
+      foreach ($products as $product) {
+        $num = rand(1,2);
+        switch ($num) {
+          case 1:
+            $targetBy = 'Outlet';
+            $targetNum = rand(40, 60);
+            break;
+          case 2:
+            $targetBy = 'Quantity';
+            $targetNum = rand(1000, 5000);
+            break;
+        }
+        SellTarget::create([
+          'name' => 'Sell Target for '.$product->name,
+          'product_id' => $product->id,
+          'target_by' => $targetBy,
+          'target_count' => $targetNum,
+          'start_date' => Carbon::now(),
+          'end_date' => Carbon::now()->addMonths(6),
+          'status' => 'Open'
+        ]);
+      }
     }
 
     private function areas()

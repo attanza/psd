@@ -164,6 +164,13 @@ return [
             'active' => ['/users', '/users/*']
             
         ],
+        [
+            'text' => 'Sell Targets',
+            'url'  => '/sell-targets',
+            'icon' => 'bullseye',
+            'active' => ['/sell-targets', '/sell-targets/*']
+            
+        ],
         // [
         //     'text' => 'Roles & Permission',
         //     'icon' => 'cog',

@@ -59,6 +59,9 @@ Route::group(['middleware' => 'auth:api'], function () {
 	// Profile
 	Route::put('profile', 'ProfileController@update');
 	Route::post('profile/change-password', 'ProfileController@changePassword');
-
+	// Sell Target
+	Route::post('sell-target-list', 'SellTargetController@getTargetList')->name('target.list');
+	Route::post('sell-target', 'SellTargetController@store')->name('target.store');
+	
 
 });

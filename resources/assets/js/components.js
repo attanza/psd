@@ -49,5 +49,6 @@ Vue.component('profile-photo', require('./components/profile/ProfilePhoto.vue'))
 Vue.component('profile-info', require('./components/profile/ProfileInfo.vue'));
 Vue.component('profile-picture', require('./components/profile/ProfilePicture.vue'));
 Vue.component('profile-form', require('./components/profile/ProfileForm.vue'));
-
+// Sell Target'
+Vue.component('sell-target-list', require('./components/sell_targets/SellTargetList.vue'));
 

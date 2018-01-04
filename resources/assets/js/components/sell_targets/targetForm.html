@@ -1,0 +1,107 @@
+<div>
+  <div class="modal"
+    id="target_form">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button"
+          class="close"
+          data-dismiss="modal"
+          aria-label="Close">
+          <span aria-hidden="true">×</span></button>
+          <h4 class="modal-title">{{modalTitle}}</h4>
+        </div>
+        <div class="modal-body">
+          <div class="form-group" :class="{'has-error': errors.has('name')}">
+            <label class="control-label"
+              for="name">Name
+            </label>
+            <input name="name"
+            v-model="name"
+            type="text"
+            placeholder="Target Name"
+            v-validate="'required|min:3|max:100'"
+            data-vv-as="Target Name"
+            class="form-control">
+            <span class="help-block"
+            v-show="errors.has('name')">{{ errors.first('name') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('product_id')}">
+            <label class="control-label"
+              for="product_id">Product
+            </label>
+            <select name="product_id"
+              v-model="product_id"
+              v-validate="'required|numeric'"
+              data-vv-as="Target Product"
+              class="form-control">
+              <option value="" selected disabled>Select Product ... </option>
+              <option v-for="product in products" :value="product.id">{{product.name}}</option>
+            </select>
+            <span class="help-block"
+            v-show="errors.has('product_id')">{{ errors.first('product_id') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('target_by')}">
+            <label class="control-label"
+              for="target_by">Target By
+            </label>
+            <select name="target_by"
+              v-model="target_by"
+              v-validate="'required|alpha|max:20'"
+              data-vv-as="Target By"
+              class="form-control">
+              <option value="" selected disabled>Select Target By ... </option>
+              <option value="Outlet">Outlet</option>
+              <option value="Quantity">Quantity</option>
+            </select>
+            <span class="help-block"
+            v-show="errors.has('target_by')">{{ errors.first('target_by') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('target_count')}">
+            <label class="control-label"
+              for="target_count">Target Count
+            </label>
+            <input name="target_count"
+            v-model="target_count"
+            type="text"
+            placeholder="Target Count"
+            v-validate="'required|numeric'"
+            data-vv-as="Target Count"
+            class="form-control">
+            <span class="help-block"
+            v-show="errors.has('target_count')">{{ errors.first('target_count') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('start_date')}">
+            <label class="control-label"
+              for="start_date">Start Date
+            </label> <br>
+            <date-picker v-model="start_date" :first-day-of-week="1" name="start_date"
+            lang="en" v-validate="'required'" data-vv-as="Start Date"></date-picker>
+            
+            <span class="help-block"
+            v-show="errors.has('start_date')">{{ errors.first('start_date') }}</span>
+          </div>
+          <div class="form-group" :class="{'has-error': errors.has('end_date')}">
+            <label class="control-label"
+              for="end_date">Start Date
+            </label> <br>
+            <date-picker v-model="end_date" :first-day-of-week="1" name="end_date"
+            lang="en" v-validate="'required'" data-vv-as="End Date"></date-picker>
+            
+            <span class="help-block"
+            v-show="errors.has('end_date')">{{ errors.first('end_date') }}</span>
+          </div>
+        </div>
+        <div class="modal-footer">
+          <button type="button"
+          class="btn btn-default pull-left"
+          @click="handleClose">Close</button>
+          <button type="button"
+          class="btn btn-danger" @click="submit">
+          <i class="fa fa-floppy-o m-r-5"></i> Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
