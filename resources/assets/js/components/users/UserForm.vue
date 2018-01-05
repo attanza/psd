@@ -2,12 +2,15 @@
 <script>
 import catchJsonErrors from '../../mixins/catchJsonErrors.js'
 import {userUrl} from '../../globalConfig.js'
+import Switches from 'vue-switches'
 export default {
+  components: { Switches },
 	data () {
     return {
       id: '',
       name: '',
       email: '',
+      phone: '',
       is_active: false,
       modalTitle: 'Add user'
     }
@@ -46,7 +49,9 @@ export default {
     edituser () {
       axios.put(userUrl + '/' + this.id, this.getData()).then((resp) => {
         if (resp.status === 200) {
+          let msg = 'A temporary password has been sent to ' + resp.data.data.email
           this.$store.commit('currentUser', resp.data.data)
+          this.throw_noty('success', msg)
           this.handleClose()
         }
       }).catch((error) => {
@@ -57,6 +62,7 @@ export default {
       return {
         name: this.name,
         email: this.email,
+        phone: this.phone,
         is_active: this.is_active,
       }
     },
@@ -65,6 +71,7 @@ export default {
       this.id = ''
       this.name = ''
       this.email = ''
+      this.phone = ''
       this.is_active = ''
       this.$validator.reset()
     },
@@ -74,6 +81,7 @@ export default {
         this.id = this.user.id
         this.name = this.user.name
         this.email = this.user.email
+        this.phone = this.user.phone
         this.is_active = this.user.is_active
       }
     },

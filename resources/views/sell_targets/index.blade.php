@@ -10,7 +10,7 @@
 </ol>
 @stop
 @section('content')
-	<sell-target-list :products="{{$products}}"></sell-target-list>
+	<sell-target-list :products="{{$products}}" :areas="{{$areas}}"></sell-target-list>
 @stop
 @section('js')
 <script src="{{ asset('js/sortable.js') }}"></script>

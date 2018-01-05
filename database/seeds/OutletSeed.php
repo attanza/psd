@@ -12,6 +12,16 @@ class OutletSeed extends Seeder
      */
     public function run()
     {
+        $this->seedOutlet();
+    }
+
+    private function seedOutletBySeller()
+    {
+        
+    }
+
+    private function seedOutlet()
+    {
         $stores = Reseller::where('parent_id', 0)->get();
         foreach ($stores as $store) {
             factory(Reseller::class)->create([

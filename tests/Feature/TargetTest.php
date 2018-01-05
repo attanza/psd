@@ -88,6 +88,7 @@ class TargetTest extends TestCase
         return [
             'name' => 'Sell Target for '.$product->name.'for this month',
 			'product_id' => $product->id,
+            'area_id' => 1,
 			'target_by' => 'Outlet',
 			'target_count' => 50,
 			'start_date' => Carbon::now()->format('Y-m-d'),

@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateSellTargetsTable extends Migration
+class CreateSellerTargetsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,14 @@ class CreateSellTargetsTable extends Migration
      */
     public function up()
     {
-        Schema::create('sell_targets', function (Blueprint $table) {
+        Schema::create('seller_targets', function (Blueprint $table) {
             $table->increments('id');
-            $table->string('name', 100);
-            $table->unsignedInteger('product_id');
-            $table->unsignedInteger('area_id');
-            $table->string('target_by', 30);
+            $table->unsignedInteger('seller_id');
+            $table->unsignedInteger('target_id');
             $table->integer('target_count');
             $table->date('start_date');
             $table->date('end_date');
-            $table->string('status', 20);
+            $table->string('status');
             $table->timestamps();
         });
     }
@@ -34,6 +32,6 @@ class CreateSellTargetsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('sell_targets');
+        Schema::dropIfExists('seller_targets');
     }
 }

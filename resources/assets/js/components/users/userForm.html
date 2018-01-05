@@ -41,12 +41,24 @@
             <span class="help-block"
                   v-show="errors.has('email')">{{ errors.first('email') }}</span>
           </div>
-                    
-          <div class="checkbox">
-            <label>
-              <input type="checkbox" v-model="is_active"> Active
+
+           <div class="form-group" :class="{'has-error': errors.has('phone')}">
+            <label class="control-label"
+                   for="phone">Phone
             </label>
+            <input name="phone"
+                   v-model="phone"
+                   type="text"
+                   placeholder="phone"
+                   v-validate="'required|max:30'"
+                   data-vv-as="phone"
+                   class="form-control">
+            <span class="help-block"
+                  v-show="errors.has('phone')">{{ errors.first('phone') }}</span>
           </div>
+                    
+          <switches v-model="is_active" theme="bootstrap" 
+            color="danger" label="Active"></switches>
         </div> 
         <div class="modal-footer">
           <button type="button"

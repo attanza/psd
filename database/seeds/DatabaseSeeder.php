@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Artisan;
 
 class DatabaseSeeder extends Seeder
 {
@@ -11,13 +12,11 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Artisan::call('migrate:refresh');
+        Artisan::call('passport:install');
         $this->call(LaratrustSeeder::class);
-        // $this->call(AreaSeed::class);
-        // $this->call(MarketSeed::class);
-        // $this->call(ProductSeed::class);
-        // $this->call(StokistSeed::class);
         $this->call(PsdSeed::class);
         $this->call(StoreSeed::class);
-        $this->call(OutletSeed::class);
+        // $this->call(OutletSeed::class);
     }
 }

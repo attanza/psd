@@ -70,7 +70,7 @@ class PsdSeed extends Seeder
     private function targetSeed()
     {
       SellTarget::truncate();
-
+      $areas = Area::select('id')->get()->count();
       $products = Product::all();
       foreach ($products as $product) {
         $num = rand(1,2);
@@ -84,9 +84,11 @@ class PsdSeed extends Seeder
             $targetNum = rand(1000, 5000);
             break;
         }
+        $areaId = rand(1, $areas);
         SellTarget::create([
           'name' => 'Sell Target for '.$product->name,
           'product_id' => $product->id,
+          'area_id' => $areaId,
           'target_by' => $targetBy,
           'target_count' => $targetNum,
           'start_date' => Carbon::now(),

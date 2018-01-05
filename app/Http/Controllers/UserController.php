@@ -34,11 +34,32 @@ class UserController extends Controller
         return new UserRCollection($users);
     }
 
+    public function store(Request $request)
+    {
+
+        $hash = str_random(6);
+
+        $request->validate([
+            'name' => 'required|max:150|unique:users',
+            'email' => 'required|email|unique:users',
+            'phone' => 'required|max:30|unique:users',
+        ]);
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'password' => bcrypt($hash)
+        ]);
+        Mail::to($user->email)->send(new ResetPasswordMail($user, $hash));
+        return new UserR($user);
+    }
+
     public function update(Request $request, $id)
     {
         $request->validate([
             'name' => 'required|max:150|unique:users,name,'.$id,
             'email' => 'required|email|unique:users,email,'.$id,
+            'phone' => 'required|max:30|unique:users,phone,'.$id,
         ]);
 
         $user = User::findOrFail($id);

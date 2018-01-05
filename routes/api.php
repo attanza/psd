@@ -5,6 +5,12 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+Route::group(['namespace' => '\Api\Auth'], function(){
+    Route::post('register', 'RegisterController@register');
+    Route::post('login', 'LoginController@login');
+    Route::post('refresh', 'LoginController@refresh');
+    Route::post('activate', 'ActivationController@activate');
+});
 
 Route::group(['middleware' => 'auth:api'], function () {
 	// area
@@ -42,7 +48,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 
 	// outlet
 	Route::post('outlet-list', 'OutletController@getOutletList')->name('outlet.list');
-	Route::post('outlet', 'OutletController@store')->name('outlet.outlet');
+	Route::post('outlet', 'OutletController@store')->name('outlet.outlet')->middleware('seller');
 	Route::put('outlet/{id}', 'OutletController@update')->name('outlet.update');
 	Route::put('outlet/{id}/location', 'OutletController@saveLocation')->name('outlet.location');
 	// role
@@ -51,7 +57,7 @@ Route::group(['middleware' => 'auth:api'], function () {
 	// Route::put('role/{id}', 'RoleController@update')->name('role.update');
 	// User
 	Route::post('user-list', 'UserController@getuserList')->name('user.list');
-	Route::post('user', 'UserController@store')->name('user.user');
+	Route::post('user', 'UserController@store')->name('user.store');
 	Route::put('user/{id}', 'UserController@update')->name('user.update');
 	Route::get('reset-password/{id}', 'UserController@resetPassword');
 	// Media

@@ -26,6 +26,21 @@
             <span class="help-block"
             v-show="errors.has('name')">{{ errors.first('name') }}</span>
           </div>
+          <div class="form-group" :class="{'has-error': errors.has('area_id')}">
+            <label class="control-label"
+              for="area_id">Area
+            </label>
+            <select name="area_id"
+              v-model="area_id"
+              v-validate="'required|numeric'"
+              data-vv-as="Target Area"
+              class="form-control">
+              <option value="" selected disabled>Select Area ... </option>
+              <option v-for="area in areas" :value="area.id">{{area.name}}</option>
+            </select>
+            <span class="help-block"
+            v-show="errors.has('area_id')">{{ errors.first('area_id') }}</span>
+          </div>
           <div class="form-group" :class="{'has-error': errors.has('product_id')}">
             <label class="control-label"
               for="product_id">Product

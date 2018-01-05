@@ -78,6 +78,7 @@ export default {
       })
     },
     submitOutlet () {
+      console.log('submit')
       axios.post(outletUrl, this.getData()).then((resp) => {
         if (resp.status === 201) {
           this.$emit('onAdd', resp.data.data)

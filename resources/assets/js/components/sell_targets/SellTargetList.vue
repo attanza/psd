@@ -18,7 +18,7 @@ export default {
     }
   },
   props: [
-    'products'
+    'products', 'areas'
   ],
   mounted() {
     this.getTargets(this.pagination.current_page)

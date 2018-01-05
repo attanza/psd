@@ -7,13 +7,17 @@ use App\Http\Resources\SellTarget\SellTargetR;
 use App\Http\Resources\SellTarget\SellTargetRCollection;
 use App\Models\SellTarget;
 use App\Models\Product;
+use App\Models\Area;
 use App\Http\Requests\StoreTarget;
 
 class SellTargetController extends Controller
 {
     public function index()
     {
-        return view('sell_targets.index')->withProducts($this->getProducts());
+        return view('sell_targets.index')->with([
+            'products' => $this->getProducts(),
+            'areas' => $this->getAreas()
+        ]);
     }
 
     public function getTargetList(Request $request)
@@ -42,5 +46,10 @@ class SellTargetController extends Controller
     private function getProducts()
     {
         return Product::select('id', 'name')->orderBy('name')->get();
+    }
+
+    private function getAreas()
+    {
+        return Area::select('id', 'name')->orderBy('name')->get();
     }
 }

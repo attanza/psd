@@ -53,9 +53,9 @@ class OutletTest extends TestCase
     /**
      * @group outlet
      */
-    public function test_user_can_add_outlet()
+    public function test_only_seller_can_add_outlet()
     {
-        $user = User::find(2);
+        $user = User::find(4);
         $this->actingAs($user, 'api')
         ->json('post', '/api/outlet', $this->postData())
         ->assertStatus(201);

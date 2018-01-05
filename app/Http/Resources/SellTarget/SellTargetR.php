@@ -16,6 +16,7 @@ class SellTargetR extends Resource
     {
         $data =  parent::toArray($request);
         $data['product'] = $this->product->name;
+        $data['area'] = $this->area->name;
         return $data;
     }
 }

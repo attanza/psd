@@ -18,6 +18,7 @@
                   <th>Name</th>
                   <th>Target By</th>
                   <th>Target Count</th>
+                  <th>Area</th>
                   <th>Status</th>
                   <th></th>
                 </tr>
@@ -27,7 +28,9 @@
                   <td>{{target.name}}</td>
                   <td>{{target.target_by}}</td>
                   <td>{{target.target_count}}</td>
+                  <td>{{target.area}}</td>
                   <td>{{target.status}}</td>
+
                   <td align="center">
                     <button class="btn btn-danger btn-xs"
                             @click="show(target.id)">
@@ -54,6 +57,7 @@
   <target-form @onClose="formClose"
                :isEdit="isEdit"
                :products="products"
+               :areas="areas"
                @onAdd="addTarget"
                ></target-form>
 </div>

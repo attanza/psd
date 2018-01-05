@@ -78,6 +78,7 @@ class UserTest extends TestCase
         return [
             'name' => $faker->name,
             'email' => $faker->safeEmail,
+            'phone' => $faker->e164PhoneNumber,
         ];
     }
 }

@@ -2,6 +2,7 @@
 use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\DB;
+use Faker\Factory;
 
 class LaratrustSeeder extends Seeder
 {
@@ -54,10 +55,12 @@ class LaratrustSeeder extends Seeder
             $this->command->info("Creating '{$key}' user");
 
             // Create default user for each role
+            $faker = Factory::create();
             $user = \App\User::create([
                 'name' => ucwords(str_replace('_', ' ', $key)),
                 'email' => $key.'@psd.com',
-                'password' => bcrypt('password')
+                'password' => bcrypt('password'),
+                'phone' => $faker->e164PhoneNumber,
             ]);
 
             $user->attachRole($role);
@@ -76,6 +79,7 @@ class LaratrustSeeder extends Seeder
                         'email' => $key.'@psd.com',
                         'password' => bcrypt('password'),
                         'remember_token' => str_random(10),
+                        'phone' => $faker->e164PhoneNumber,
                     ]);
                     $permissions = [];
 

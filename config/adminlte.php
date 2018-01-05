@@ -159,9 +159,21 @@ return [
         ],
         [
             'text' => 'Users',
-            'url'  => '/users',
             'icon' => 'user',
-            'active' => ['/users', '/users/*']
+            'submenu' => [
+                [
+                    'text' => 'Users',
+                    'url'  => '/users',
+                    'icon' => 'user',
+                    'active' => ['/users', '/users/*'],
+                ],
+                [
+                    'text' => 'Sellers',
+                    'url'  => '/sellers',
+                    'icon' => 'user',
+                    'active' => ['/sellers', '/sellers/*'],
+                ]
+            ]
             
         ],
         [

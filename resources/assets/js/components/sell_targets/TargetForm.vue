@@ -8,12 +8,12 @@ export default {
   components: { DatePicker },
 	data () {
     return {
-      id: '', name: '', product_id: '', target_by: '', target_count: '',
+      id: '', name: '', product_id: '', target_by: '', target_count: '', area_id: '',
       start_date: '', end_date: '', status: 'Open',
       modalTitle: 'Add Target'
     }
   },
-  props: ['isEdit', 'products'],
+  props: ['isEdit', 'products', 'areas'],
   watch: {
   	isEdit () {
   		if (this.isEdit) {
@@ -63,6 +63,7 @@ export default {
         target_count: this.target_count,
         start_date: moment(this.start_date).format("YYYY-MM-DD"),
         end_date: moment(this.end_date).format("YYYY-MM-DD"),
+        area_id: this.area_id,
         status: this.status,
       }
     },
@@ -75,6 +76,7 @@ export default {
       this.target_count = ''
       this.start_date = ''
       this.end_date = '',
+      this.area_id = '',
       this.$validator.reset()
     },
     fillForm () {
